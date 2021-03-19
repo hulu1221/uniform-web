@@ -1,0 +1,237 @@
+<!-- danh sach account -->
+<div class="container-fuild" style="margin-top: 5px;">
+    <div>
+        <div class="row cust-row" style="margin-left: 5px;
+        margin-right: 3px;">
+            <div class="col-12" style="border-bottom: 1px solid #c8ced3;padding: 0px;">
+                <div class="p-2" style="font-weight: 500;">
+                    <span>THÔNG TIN KHÁCH HÀNG</span>
+                </div>
+            </div>
+            <div class="col-12" style="margin-top: 10px; margin-bottom: 5px;">
+                <div class="col-6 colLeft">
+                    <div class="row">
+                        <label class="col-sm-5 col-form-label textLabel">Mã khách hàng
+                        </label>
+                        <div class="col-sm-7 txt">
+                            <label>{{detailProcess.customerCode ? detailProcess.customerCode : 'XXXXXX'}}</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-5 col-form-label textLabel">Số giấy tờ xác minh
+                        </label>
+                        <div class="col-sm-7 txt">
+                            <label>{{detailProcess.perDocNo}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 colRight">
+                    <div class="row">
+                        <label class="col-sm-5 col-form-label textLabel">Họ và tên
+                        </label>
+                        <div class="col-sm-7 txt">
+                            <label>{{detailProcess.fullName}}</label>
+                        </div>
+                    </div>
+                  <div class="row">
+                    <label class="col-sm-5 col-form-label textLabel">Ngày sinh
+                    </label>
+                    <div class="col-sm-7 txt">
+                      <label>{{detailProcess.getBirthDay()}}</label>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <!-- <div class="col-12" style="margin-top: 10px; margin-bottom: 5px;">
+                <ul>
+                    <li><i class="fa fa-user" aria-hidden="true" style="margin-right: 5px;"></i>THAONT8 tạo mới lúc
+                        04/11/2020 14:00:00 CH</li>
+                    <li><i class="fa fa-user" aria-hidden="true" style="margin-right: 5px;"></i>THAONT8 cập nhật lúc
+                        05/11/2020 14:00:00 SA</li>
+                </ul>
+            </div> -->
+        </div>
+    </div>
+    <!-- them moi -->
+    <div>
+        <div class="row cust-row" style="margin-left: 5px;
+        margin-right: 3px;margin-top: 5px;">
+            <div class="col-12" style="border-bottom: 1px solid #c8ced3;padding: 0px;">
+                <div class="p-2" style="font-weight: 500;">
+                    <span>THÊM MỚI</span>
+                </div>
+            </div>
+            <form style="width: 100%;" [formGroup]="createAccountForm">
+                <div class="col-12" style="display: flex;padding-left: 0px;padding-right: 0px;">
+                    <div class="col-6 colLeft" style="padding-top: 20px;padding-bottom:10px">
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label textLabel">Tên tài khoản
+                            </label>
+                            <div class="col-sm-7" style="padding-right: 0px;">
+                                <input formControlName="accountName" name="accountName"
+                                    [(ngModel)]="objCreateAccount.accountName" class="form-control form-control-sm"
+                                    disabled type="text">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label textLabel">Loại tiền tệ<span
+                                    style="color: red;margin-left: 5px;">(*)</span>
+                            </label>
+                            <div class="col-sm-7" style="padding-right: 0px;">
+                                <select formControlName="typeCurrency"
+                                name="typeCurrency" class="form-control form-control-sm"
+                                    [(ngModel)]="typeCurrency" (change)="onChangeAccountCurrency($event.target.value)">
+                                    <option [value]="item.code" *ngFor="let item of lstCurrency">{{item.code}}
+                                    </option>
+                                </select>
+                                <!-- <select class="form-control form-control-sm" formControlName="typeCurrency"
+                                    name="typeCurrency">
+                                    <option *ngFor="let item of this.lstCurrency">{{item.value}}</option>
+                                </select> -->
+                                <!-- <div *ngIf="submitted && f.typeCurrency.errors" class="invalid-feedback">
+                                    <div *ngIf="f.typeCurrency.errors.required ">Loại tiền tệ chưa chọn</div>
+                                </div> -->
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label textLabel">Loại tài khoản<span
+                                    style="color: red;margin-left: 5px;">(*)</span>
+                            </label>
+                            <div class="col-sm-7" style="padding-right: 0px;">
+                                <select [ngClass]="{ 'is-invalid': submitted && f.typeAccountHtml.errors}"
+                                    class="form-control form-control-sm" formControlName="typeAccountHtml"
+                                    name="typeAccountHtml" #myAccountProduct
+                                    (change)="onChangeAccountProduct(myAccountProduct.value)">
+                                    <option value="" disabled selected>-- Chọn loại tài khoản --</option>
+                                    <option *ngFor="let item of lstAccountProduct" [value]="item.code">{{item.code}} - {{item.name}}
+                                    </option>
+                                </select>
+                                <div *ngIf="submitted && f.typeAccountHtml.errors" class="invalid-feedback">
+                                    <div *ngIf="f.typeAccountHtml.errors.required ">Loại tài khoản chưa chọn</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label textLabel">Mã tài khoản<span
+                                    style="color: red;margin-left: 5px;">(*)</span>
+                            </label>
+                            <div class="col-sm-7" style="padding-right: 0px;">
+                                <select #mySelect [ngClass]="{ 'is-invalid': submitted && f.codeAccount.errors}"
+                                    class="form-control form-control-sm" formControlName="codeAccount"
+                                    (change)="onChangeAccountClass(mySelect.value)" [(ngModel)]="objCreateAccount.accountClassCode" name="codeAccount">
+                                    <option value="" disabled selected>-- Mã tài khoản --</option>
+                                    <option *ngFor="let item of lstAccountClassMap" [value]="item.value" >{{item.name}}
+                                    </option>
+                                </select>
+                                <!-- <span style="padding-top: 5px;display: block;" *ngIf="checkAccoutClass">{{accountClassName}}</span> -->
+                                <div *ngIf="submitted && f.codeAccount.errors" class="invalid-feedback">
+                                    <div *ngIf="f.codeAccount.errors.required ">Mã tài khoản chưa chọn</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label textLabel">Chi nhánh
+                            </label>
+                            <div class="col-sm-7" style="padding-right: 0px;">
+                                <label class=" form-control-sm" style="padding-left: 0px;">{{branchName}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 colRight" style="padding-top: 20px;padding-bottom:10px">
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label textLabel">Số tài khoản<span
+                                    style="color: red;margin-left: 5px;">(*)</span>
+                            </label>
+                            <div class="col-sm-7" style="padding-right: 0px;">
+                                <input formControlName="acountNumber" [(ngModel)]="accountNumber" disabled
+                                    name="acountNumber" class="form-control form-control-sm" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label textLabel">Gói tài khoản
+                            </label>
+                            <div class="col-sm-7" style="padding-right: 0px;">
+                                <select class="form-control form-control-sm" formControlName="packageAccount"
+                                    name="packageAccount">
+                                    <option value="" disabled selected>-- Chọn gói tài khoản --</option>
+                                </select>
+                                <!-- <div *ngIf="submitted && f.packageAccount.errors" class="invalid-feedback">
+                                    <div *ngIf="f.packageAccount.errors.required ">Gói tài khoản chưa chọn</div>
+                                </div> -->
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label textLabel" style="    padding: 5px 5px 5px 5px;">Số
+                                tiền duy trì tối thiểu<span style="color: red;margin-left: 5px;">(*)</span>
+                            </label>
+                            <div class="col-sm-7" style="padding-right: 0px;">
+                                <input numbersOnly [ngClass]="{ 'is-invalid': submitted && f.minimumMaintenanceBalance.errors}"
+                                    class="form-control form-control-sm" type="text"
+                                    [(ngModel)]="objCreateAccount.minBalance" #input (blur)="onBlurMethod($event.target.value)"
+                                    formControlName="minimumMaintenanceBalance" name="minimumMaintenanceBalance" />
+                                <!-- <select class="form-control form-control-sm">
+                                <option>50.000 VNĐ</option>
+                            </select> -->
+                                <div *ngIf="submitted && f.minimumMaintenanceBalance.errors" class="invalid-feedback">
+                                    <div *ngIf="f.minimumMaintenanceBalance.errors.required ">Số tiền duy trì tối thiểu
+                                        không để trống</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label textLabel">Mã nhân viên<span
+                                    style="color: red;margin-left: 5px;">(*)</span>
+                            </label>
+                            <div class="col-sm-7" style="padding-right: 0px;">
+                                <input numbersOnly [ngClass]="{ 'is-invalid': submitted && f.employeeCode.errors}"
+                                    class="form-control form-control-sm" maxlength="10" formControlName="employeeCode"
+                                    name="employeeCode"
+                                    [(ngModel)]= "objCreateAccount.employeeId"/>
+                                <div *ngIf="submitted && f.employeeCode.errors" class="invalid-feedback">
+                                    <div *ngIf="f.employeeCode.errors.required ">Mã nhân viên
+                                        không để trống</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-12" style="clear: both; display: block;">
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label textLabel" style="padding: 0px;">Diễn giải tài khoản<span
+                                style="color: red;margin-left: 5px;">(*)</span>
+                        </label>
+                        <div class="col-sm-10" style="padding-right: 0px;">
+                            <textarea [ngClass]="{ 'is-invalid': submitted && f.description.errors}"
+                                formControlName="description" name="description" class="form-control form-control-sm"
+                                style="width: 95%;" [(ngModel)]="objCreateAccount.accountDescription"></textarea>
+                            <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                                <div *ngIf="f.description.errors.required ">Diễn giải tài khoản
+                                    không để trống</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- ket thuc them moi -->
+</div>
+<div style="height: 50px;display: block;clear: both;"></div>
+<div class="row footer-row" style="margin:0px;position: fixed;width: 100%;bottom: 0px;background: #23388F;">
+    <div class="col-12" style="text-align: right;padding: 0px;cursor: pointer;margin: 0px;">
+        <div class="footer" style="padding-right: 20px;" style="cursor: pointer;" (click)="createAccount()">
+            <span class="material-icons" style="cursor: pointer;">
+                note_add
+            </span>
+            <label style="padding: 3px 5px 5px 5px !important;cursor: pointer;">Lưu thông tin</label>
+        </div>
+        <div class="footer" (click)="backPage()" style="cursor: pointer;">
+            <span class="material-icons" style="cursor: pointer;">
+                keyboard_backspace
+            </span>
+            <label style="padding: 3px 5px 5px 5px !important;cursor: pointer;">Trở về trang trước</label>
+        </div>
+    </div>
+</div>

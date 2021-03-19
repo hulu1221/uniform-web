@@ -1,0 +1,876 @@
+<div class="container-fluid" style="padding: 0.5em;">
+  <div class="row cust-row" style="margin-left: 5px;
+        margin-right: 3px;">
+    <div class="col-12" style="border-bottom: 1px solid #c8ced3;padding: 0px;">
+      <div class="p-2" style="font-weight: 500;">
+        <span style="color: #252834;padding-left: 10px;">THÔNG TIN KHÁCH HÀNG - {{showUpdate ? 'CẬP NHẬT' : 'ĐĂNG KÝ MỚI'}}</span>
+      </div>
+    </div>
+    <div class="col-12">
+      <form style="width:100%" [formGroup]="cifForm">
+        <label class="labelTitle">Thông tin cá nhân
+          <span style="color: red;">(*)</span>
+        </label>
+        <div class="col-12">
+          <div class="col-6 colLeft">
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label textLabel">Họ và tên
+                <span style="color: red;">(*)</span>
+              </label>
+              <div class="col-sm-8 input-group">
+                <input NumberAndTextViOnly type="text" class="form-control form-control-sm inputText"
+                       formControlName="fullName" name="fullName" placeholder="VD: NGUYEN VAN A"
+                       tabindex="{{tabIndex.fullName}}" maxlength="50" (input)="onInput('fullName')"
+                       [ngClass]="{'is-invalid' : getFieldValidation('fullName')}">
+                <div class="invalid-feedback">
+                  <div>Họ và tên {{getValidatorMessage('fullName')}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label textLabel">Giới tính
+                <span style="color: red;">(*)</span>
+              </label>
+              <div class="col-sm-8">
+                <select class="form-control form-control-sm is-invalid"
+                        style="height: 36px;" tabindex="{{tabIndex.gender}}" required formControlName="genderCode" name="genderCode"
+                        (change)="onInput('genderCode')" [ngClass]="{'is-invalid': getFieldValidation('genderCode')}">
+                  <option value="" disabled selected>-- Chọn giới tính --</option>
+                  <option *ngFor="let gender of categories.genders" [value]="gender.id">{{gender.name}}</option>
+                </select>
+                <div class="invalid-feedback">
+                  <div>Vui lòng chọn giới tính</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label textLabel">Ngày sinh
+                <span style="color: red;">(*)</span>
+              </label>
+              <div class="col-sm-8">
+                <app-date-picker1 [message]="dpMessage('birthDate')"
+                                  [date]="detailProcess.getBirthDayEdit()"
+                                  (dateOnInput)="checkDate($event, 'birthDate')"
+                                  [isTouched]="f.birthDate.touched"
+                                  [isInvalid]="getFieldValidation('birthDate')" (date2)="checkDate($event, 'birthDate')"></app-date-picker1>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label textLabel">Quốc tịch 1
+                <span style="color: red;">(*)</span>
+              </label>
+              <div class="col-sm-8">
+                <div style="display: flex" [ngClass]="{'is-invalid' : getFieldValidation('nationality')}">
+                  <ng-select tabIndex="{{tabIndex.nationalityCode}}" [items]="tmpCountries"
+                             style="width: 100%"
+                             [ngClass]="{'is-invalid' : getFieldValidation('nationality')}"
+                             (change)="onNationalityChange()" formControlName="nationality" name="nationality"
+                             placeholder="-- Chọn quốc gia --" bindLabel="name" bindValue="id">
+                    <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                      <div class="ng-option disabled">
+                        Không tìm thấy dữ liệu cho "{{searchTerm}}"
+                      </div>
+                    </ng-template>
+                  </ng-select>
+                  <mat-icon class="mat-icon-add" (click)="addNationality()">add_circle_outline</mat-icon>
+                </div>
+                <div class="invalid-feedback">
+                  <div>Quốc tịch 1 không được để trống</div>
+                </div>
+                <div class="ng-select-flex" *ngIf="nationalityCodes.code2">
+                  <ng-select tabIndex="{{tabIndex.nationalityCode}}" [items]="tmpCountries"
+                             style="width: 100%" (change)="onOtherNationalityChange()"
+                             formControlName="nationality2" name="nationality2"
+                             placeholder="-- Chọn quốc gia --" bindLabel="name" bindValue="id">
+                    <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                      <div class="ng-option disabled">
+                        Không tìm thấy dữ liệu cho "{{searchTerm}}"
+                      </div>
+                    </ng-template>
+                  </ng-select>
+                  <mat-icon class="mat-icon-add" (click)="removeNationality(2)">remove</mat-icon>
+                </div>
+                <div class="ng-select-flex" *ngIf="nationalityCodes.code3">
+                  <ng-select tabIndex="{{tabIndex.nationalityCode}}" [items]="tmpCountries"
+                             style="width: 100%" (change)="onOtherNationalityChange()"
+                             formControlName="nationality3" name="nationality3"
+                             placeholder="-- Chọn quốc gia --" bindLabel="name" bindValue="id">
+                    <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                      <div class="ng-option disabled">
+                        Không tìm thấy dữ liệu cho "{{searchTerm}}"
+                      </div>
+                    </ng-template>
+                  </ng-select>
+                  <mat-icon class="mat-icon-add" (click)="removeNationality(3)">remove</mat-icon>
+                </div>
+                <div class="ng-select-flex" *ngIf="nationalityCodes.code4">
+                  <ng-select tabIndex="{{tabIndex.nationalityCode}}" [items]="tmpCountries"
+                             style="width: 100%" (change)="onOtherNationalityChange()"
+                             formControlName="nationality4" name="nationality4"
+                             placeholder="-- Chọn quốc gia --" bindLabel="name" bindValue="id">
+                    <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                      <div class="ng-option disabled">
+                        Không tìm thấy dữ liệu cho "{{searchTerm}}"
+                      </div>
+                    </ng-template>
+                  </ng-select>
+                  <mat-icon class="mat-icon-add" (click)="removeNationality(4)">remove</mat-icon>
+                </div>
+
+              </div>
+
+            </div>
+            <div class="form-group row" *ngIf="showVisa">
+              <label class="col-sm-4 col-form-label textLabel">Thị thực nhập cảnh
+              </label>
+              <div class="col-sm-8">
+                <mat-radio-group formControlName="visaExemption" name="visaExemption" (change)="onVisaExemptionChange()">
+                  <mat-radio-button color="primary" class="example-radio-button" [value]="1">
+                    Miễn thị thực nhập cảnh
+                  </mat-radio-button><br>
+                  <div style="display: flex; padding-bottom: 5px">
+                    <mat-radio-button color="primary" style="margin-top: 8px" [value]="2">
+                      Từ ngày
+                    </mat-radio-button>
+                    <app-date-picker1 [message]="'Ngày bắt đầu không hợp lệ'"
+                                      [date]="detailProcess.getEditDate(detailProcess.visaIssueDate)"
+                                      (dateOnInput)="checkDate($event, 'visaIssueDate')"
+                                      [isTouched]="f.visaIssueDate.touched"
+                                      [isInvalid]="expiredDateValidator('visaIssueDate', 'visaExpireDate') && cifForm.errors?.smallerDate?.value == 'visaIssueDate' || f.visaIssueDate.errors?.required"
+                                      [disable]="f.visaExemption.value == '1' || f.visaExemption.value == ''"
+                                      (date2)="checkDate($event, 'visaIssueDate')"
+                                      style="margin-left: 10px; width: 100%" class="main-visa-input"
+                    ></app-date-picker1>
+                  </div>
+                  <div style="margin-left: 88px">
+                    <app-date-picker1 [message]="expiredDateValidator('visaIssueDate', 'visaExpireDate') ? 'Ngày kết thúc không được nhỏ hơn ngày bắt đầu' : 'Thời gian thị thực không hợp lệ'"
+                                      [date]="detailProcess.getEditDate(detailProcess.visaExpireDate)"
+                                      (dateOnInput)="checkDate($event, 'visaExpireDate')"
+                                      [isTouched]="f.visaExpireDate.touched"
+                                      [disable]="f.visaExemption.value == '1' || f.visaExemption.value == ''"
+                                      [isInvalid]="expiredDateValidator('visaIssueDate', 'visaExpireDate') && cifForm.errors?.smallerDate?.value == 'visaExpireDate' || f.visaExpireDate.errors?.required"
+                                      (date2)="checkDate($event, 'visaExpireDate')" class="main-visa-input"
+                    ></app-date-picker1>
+                  </div>
+                </mat-radio-group>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label textLabel">Mã số thuế
+              </label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control form-control-sm inputText " formControlName="taxNumber"
+                       name="taxNumber" placeholder="-- Nhập mã số thuế --"
+                       tabindex="{{tabIndex.taxNumber}}">
+                <a class="col-form-label" href="https://thuedientu.gdt.gov.vn" target="_blank">thuedientu.gdt.gov.vn
+                </a>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label textLabel">Người cư trú
+                <span style="color: red;">(*)</span>
+              </label>
+              <div class="col-sm-8" style="padding-top: 6px">
+                <div class="inputText" style="width: 100%;"
+                     [ngClass]="{ 'is-invalid': getFieldValidation('residentStatus')}" tabindex="{{tabIndex.residence}}">
+                  <mat-radio-group formControlName="residentStatus" name="residentStatus"
+                                   (change)="onInput($event.source.name)">
+                    <mat-radio-button class="radio-padding-right" color="primary" value="1">Có</mat-radio-button>
+                    <mat-radio-button color="primary" value="2">Không</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+                <ng-template [ngIf]="getFieldValidation('residentStatus')">
+                  <div class="invalid-feedback">
+                    <div>Người cư trú không được để trống</div>
+                  </div>
+                </ng-template>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label textLabel">Nghề nghiệp
+                <span style="color: red;">(*)</span>
+              </label>
+              <div class="col-sm-8">
+                <ng-select tabIndex="{{tabIndex.industry}}"
+                           [items]="categories.industries"
+                           formControlName="profession"
+                           name="profession"
+                           placeholder="-- Chọn nghề --"
+                           (change)="onInput('profession')"
+                           [ngClass]="{'is-invalid': getFieldValidation('profession')}"
+                           bindLabel="name"
+                           bindValue="id">
+                  <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                    <div class="ng-option disabled">
+                      Không tìm thấy dữ liệu cho "{{searchTerm}}"
+                    </div>
+                  </ng-template>
+                </ng-select>
+                <div class="invalid-feedback" >
+                  <div>Nghề nghiệp không được để trống</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label textLabel">Nơi công tác
+              </label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control form-control-sm inputText" formControlName="workPlace" name="workPlace"
+                        maxlength="100" placeholder="---Nhập nơi công tác---" >
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label textLabel">Chức vụ
+                <span style="color: red;">(*)</span>
+              </label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control form-control-sm inputText" formControlName="position"
+                       name="position" maxlength="100" placeholder="---Nhập chức vụ---" (input)="onInput('position')"
+                       tabindex="{{tabIndex.position}}" [ngClass]="{ 'is-invalid': getFieldValidation('position')}">
+                <div class="invalid-feedback">
+                  <div>Chức vụ không được để trống</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label textLabel">Số điện thoại
+                <span style="color: red;">(*)</span>
+              </label>
+              <div class="col-sm-8">
+                <input type="text" numbersOnly class="form-control form-control-sm inputText "
+                       formControlName="mobilePhone" name="mobilePhone" maxlength="10"
+                       placeholder="-- Nhập số điện thoại di động --" tabindex="{{tabIndex.mobilePhone}}"
+                       (input)="onInput('mobilePhone')" [ngClass]="{'is-invalid': getFieldValidation('mobilePhone')}">
+                <div class="invalid-feedback">
+                  <div>Số diện thoại {{getValidatorMessage('mobilePhone')}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label textLabel">Email
+              </label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control form-control-sm inputText" formControlName="email"
+                       tabindex="{{tabIndex.email}}" maxlength="100" [ngClass]="{'is-invalid': getFieldValidation('email')}"
+                       placeholder="-- Nhập địa chỉ email --" (focusout)="onInput('email')">
+                <div class="invalid-feedback">
+                  <div *ngIf="f.email.errors && !f.email.errors?.maxlength">Email không hợp lệ</div>
+                  <div *ngIf="f.email.errors?.maxlength">Email không được vượt quá {{f.email.errors?.minlength.requiredLength}} ký tự</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label textLabel">Nhu cầu sử dụng thấu chi
+              </label>
+              <div class="col-sm-8" style="padding-top: 6px" tabindex="{{tabIndex.usingOverdraft}}">
+                <mat-radio-group formControlName="creditStatus">
+                  <mat-radio-button color="primary" value="1">Có</mat-radio-button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <mat-radio-button color="primary" value="2">Không</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label textLabel">
+              </label>
+              <div class="col-sm-8">
+                <div class="form-check form-check-inline">
+                  <section class="example-section" tabindex="{{tabIndex.salaryInBank}}">
+                    <mat-checkbox color="primary" class="example-margin" formControlName="payStatus">
+                      Nhận lương qua LienVietPostBank</mat-checkbox>
+                  </section>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <!-- benphai -->
+          <div class="col-6 colRight">
+
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <h3 class="title-gtxm">Thông tin giấy tờ xác minh</h3>
+              </div>
+              <label class="col-sm-4 col-form-label textLabel">Loại giấy tờ tùy thân
+                <span style="color: red;">(*)</span>
+              </label>
+              <div class="col-sm-8">
+                <div class="ng-select-flex" [ngClass]="{'is-invalid': getFieldValidation('perDocType')}">
+                  <select placeholder="-- Chọn loại giấy tờ tùy thân --" class="form-control form-control-sm"
+                          style="height: 36px;" tabindex="{{tabIndex.perDocType}}" required formControlName="perDocType"
+                          name="perDocType" (change)="onInput('perDocType', true)"
+                          [ngClass]="{'is-invalid': getFieldValidation('perDocType')}">
+                    <option value="" disabled selected>-- Chọn Loại giấy tờ tùy thân --</option>
+                    <option *ngFor="let item of tmpPerDocTypes" [disabled]="item.disable" [value]="item.id">{{item.name}}</option>
+                  </select>
+                  <mat-icon class="mat-icon-add" (click)="addPerDoc()">add_circle_outline</mat-icon>
+                </div>
+                <div class="invalid-feedback">
+                  <div>Vui lòng chọn loại giấy tờ tùy thân</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label textLabel">Số giấy tờ xác minh
+                <span style="color: red;">(*)</span>
+              </label>
+              <div class="col-sm-8">
+                <input NumberAndTextOnly type="text" class="form-control form-control-sm inputText"
+                       formControlName="perDocNo" name="perDocNo" placeholder="VD: 026198002555"
+                       tabindex="{{tabIndex.perDocNo}}" [maxLength]="maxPerDocNo.no" (input)="onInput('perDocNo')"
+                       [ngClass]="{ 'is-invalid' : getFieldValidation('perDocNo')}">
+                <div class="invalid-feedback">
+                  <ng-template [ngIf]="f.perDocNo.errors?.required">
+                    <div>Số giấy tờ xác minh không được để trống</div>
+                  </ng-template>
+                  <ng-template [ngIf]="f.perDocNo.errors?.minlength">
+                    <div>Số giấy tờ xác minh tối thiểu {{f.perDocNo.errors?.minlength.requiredLength}} ký tự</div>
+                  </ng-template>
+                  <ng-template [ngIf]="f.perDocNo.errors?.maxlength">
+                    <div>Số giấy tờ xác minh không được vượt quá {{f.perDocNo.errors?.minlength.requiredLength}} ký tự</div>
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label textLabel">Nơi cấp
+                <span style="color: red;">(*)</span>
+              </label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control form-control-sm inputText" formControlName="issuedPlace"
+                       name="issuedPlace" placeholder="Nhập CA tỉnh / thành phố" tabindex="{{tabIndex.issuePlace}}"
+                       maxlength="200" (input)="onInput($event.target.name)"
+                       [ngClass]="{'is-invalid': getFieldValidation('issuedPlace')}">
+                <div class="invalid-feedback">
+                  <div>Nơi cấp {{getValidatorMessage('issuedPlace')}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label textLabel">Ngày cấp
+                <span style="color: red;">(*)</span>
+              </label>
+              <div class="col-sm-8">
+                <app-date-picker1 [message]="dpMessage('issuedDate')"
+                                  [date]="detailProcess.getEditDate(detailProcess.issueDate)"
+                                  (dateOnInput)="checkDate($event, 'issuedDate')"
+                                  [isTouched]="f.issuedDate.touched"
+                                  [isInvalid]="getFieldValidation('issuedDate')" (date2)="checkDate($event, 'issuedDate')"></app-date-picker1>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label textLabel">Ngày hết hiệu lực
+                <span style="color: red;">(*)</span>
+              </label>
+              <div class="col-sm-8">
+                <app-date-picker1 [message]="dpMessage('expiredDate')"
+                                  [date]="detailProcess.getEditDate(detailProcess.expireDate)"
+                                  (dateOnInput)="checkDate($event, 'expiredDate')"
+                                  [isTouched]="f.expiredDate.touched"
+                                  [isInvalid]="getFieldValidation('expiredDate')" (date2)="checkDate($event, 'expiredDate')"></app-date-picker1>
+              </div>
+            </div>
+            <ng-template [ngIf]="perDocs.code2">
+              <div class="form-group row">
+                <div class="col-sm-12">
+                  <h3 class="title-gtxm">Thông tin giấy tờ xác minh</h3>
+                </div>
+                <label class="col-sm-4 col-form-label textLabel">Loại giấy tờ tùy thân
+                  <span style="color: red;">(*)</span>
+                </label>
+                <div class="col-sm-8">
+                  <div class="ng-select-flex" [ngClass]="{'is-invalid': getFieldValidation('perDocType2')}">
+                    <select placeholder="-- Chọn loại giấy tờ tùy thân --" class="form-control form-control-sm"
+                            style="height: 36px;" tabindex="{{tabIndex.perDocType}}" required formControlName="perDocType2"
+                            name="perDocType2" (change)="onInput('perDocType2', true, '2')"
+                            [ngClass]="{'is-invalid': getFieldValidation('perDocType2')}">
+                      <option value="" disabled selected>-- Chọn Loại giấy tờ tùy thân --</option>
+                      <option *ngFor="let item of tmpPerDocTypes" [disabled]="item.disable" [value]="item.id">{{item.name}}</option>
+                    </select>
+                    <mat-icon class="mat-icon-add" (click)="removePerDoc(2)">remove</mat-icon>
+                  </div>
+                  <div class="invalid-feedback">
+                    <div>Vui lòng chọn loại giấy tờ tùy thân</div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-4 col-form-label textLabel">Số giấy tờ xác minh
+                  <span style="color: red;">(*)</span>
+                </label>
+                <div class="col-sm-8">
+                  <input NumberAndTextOnly type="text" class="form-control form-control-sm inputText"
+                         formControlName="perDocNo2" name="perDocNo2" placeholder="VD: 026198002555"
+                         tabindex="{{tabIndex.perDocNo}}" [maxLength]="maxPerDocNo.no2" (input)="onInput('perDocNo2')"
+                         [ngClass]="{ 'is-invalid' : getFieldValidation('perDocNo2')}">
+                  <div class="invalid-feedback">
+                    <ng-template [ngIf]="f.perDocNo2.errors?.required">
+                      <div>Số giấy tờ xác minh không được để trống</div>
+                    </ng-template>
+                    <ng-template [ngIf]="f.perDocNo2.errors?.minlength">
+                      <div>Số giấy tờ xác minh tối thiểu {{f.perDocNo2.errors?.minlength.requiredLength}} ký tự</div>
+                    </ng-template>
+                    <ng-template [ngIf]="f.perDocNo2.errors?.maxlength">
+                      <div>Số giấy tờ xác minh không được vượt quá {{f.perDocNo2.errors?.minlength.requiredLength}} ký tự</div>
+                    </ng-template>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-4 col-form-label textLabel">Nơi cấp
+                  <span style="color: red;">(*)</span>
+                </label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control form-control-sm inputText" formControlName="issuedPlace2"
+                         name="issuedPlace2" placeholder="Nhập CA tỉnh / thành phố" tabindex="{{tabIndex.issuePlace}}"
+                         maxlength="200" (input)="onInput('issuedPlace2')"
+                         [ngClass]="{'is-invalid': getFieldValidation('issuedPlace2')}">
+                  <div class="invalid-feedback">
+                    <div>Nơi cấp {{getValidatorMessage('issuedPlace2')}}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-4 col-form-label textLabel">Ngày cấp
+                  <span style="color: red;">(*)</span>
+                </label>
+                <div class="col-sm-8">
+                  <app-date-picker1 [message]="dpMessage('issuedDate2')"
+                                    [date]="detailProcess.getEditDate(detailProcess.issueDate2)"
+                                    (dateOnInput)="checkDate($event, 'issuedDate2')"
+                                    [isTouched]="f.issuedDate2.touched"
+                                    [isInvalid]="getFieldValidation('issuedDate2')" (date2)="checkDate($event, 'issuedDate2')"></app-date-picker1>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-4 col-form-label textLabel">Ngày hết hiệu lực
+                  <span style="color: red;">(*)</span>
+                </label>
+                <div class="col-sm-8">
+                  <app-date-picker1 [message]="dpMessage('expiredDate2')"
+                                    [date]="detailProcess.getEditDate(detailProcess.expireDate2)"
+                                    (dateOnInput)="checkDate($event, 'expiredDate2')"
+                                    [isTouched]="f.expiredDate2.touched"
+                                    [isInvalid]="getFieldValidation('expiredDate2')" (date2)="checkDate($event, 'expiredDate2')"></app-date-picker1>
+                </div>
+              </div>
+            </ng-template>
+            <ng-template [ngIf]="perDocs.code3">
+              <div class="form-group row">
+                <div class="col-sm-12">
+                  <h3 class="title-gtxm">Thông tin giấy tờ xác minh</h3>
+                </div>
+                <label class="col-sm-4 col-form-label textLabel">Loại giấy tờ tùy thân
+                  <span style="color: red;">(*)</span>
+                </label>
+                <div class="col-sm-8">
+                  <div class="ng-select-flex" [ngClass]="{'is-invalid': getFieldValidation('perDocType3')}">
+                    <select placeholder="-- Chọn loại giấy tờ tùy thân --" class="form-control form-control-sm"
+                            style="height: 36px;" tabindex="{{tabIndex.perDocType}}" required formControlName="perDocType3"
+                            name="perDocType3" (change)="onInput('perDocType3', true, '3')"
+                            [ngClass]="{'is-invalid': getFieldValidation('perDocType3')}">
+                      <option value="" disabled selected>-- Chọn Loại giấy tờ tùy thân --</option>
+                      <option *ngFor="let item of tmpPerDocTypes" [disabled]="item.disable" [value]="item.id">{{item.name}}</option>
+                    </select>
+                    <mat-icon class="mat-icon-add" (click)="removePerDoc(3)">remove</mat-icon>
+                  </div>
+                  <div class="invalid-feedback">
+                    <div>Vui lòng chọn loại giấy tờ tùy thân</div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-4 col-form-label textLabel">Số giấy tờ xác minh
+                  <span style="color: red;">(*)</span>
+                </label>
+                <div class="col-sm-8">
+                  <input NumberAndTextOnly type="text" class="form-control form-control-sm inputText"
+                         formControlName="perDocNo3" name="perDocNo3" placeholder="VD: 026198002555"
+                         tabindex="{{tabIndex.perDocNo}}" [maxLength]="maxPerDocNo.no3" (input)="onInput('perDocNo3')"
+                         [ngClass]="{ 'is-invalid' : getFieldValidation('perDocNo3')}">
+                  <div class="invalid-feedback">
+                    <ng-template [ngIf]="f.perDocNo3.errors?.required">
+                      <div>Số giấy tờ xác minh không được để trống</div>
+                    </ng-template>
+                    <ng-template [ngIf]="f.perDocNo3.errors?.minlength">
+                      <div>Số giấy tờ xác minh tối thiểu {{f.perDocNo3.errors?.minlength.requiredLength}} ký tự</div>
+                    </ng-template>
+                    <ng-template [ngIf]="f.perDocNo3.errors?.maxlength">
+                      <div>Số giấy tờ xác minh không được vượt quá {{f.perDocNo3.errors?.minlength.requiredLength}} ký tự</div>
+                    </ng-template>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-4 col-form-label textLabel">Nơi cấp
+                  <span style="color: red;">(*)</span>
+                </label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control form-control-sm inputText" formControlName="issuedPlace3"
+                         name="issuedPlace3" placeholder="Nhập CA tỉnh / thành phố" tabindex="{{tabIndex.issuePlace}}"
+                         maxlength="200" (input)="onInput('issuedPlace3')"
+                         [ngClass]="{'is-invalid': getFieldValidation('issuedPlace3')}">
+                  <div class="invalid-feedback">
+                    <div>Nơi cấp {{getValidatorMessage('issuedPlace3')}}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-4 col-form-label textLabel">Ngày cấp
+                  <span style="color: red;">(*)</span>
+                </label>
+                <div class="col-sm-8">
+                  <app-date-picker1 [message]="dpMessage('issuedDate3')"
+                                    [date]="detailProcess.getEditDate(detailProcess.issueDate3)"
+                                    (dateOnInput)="checkDate($event, 'issuedDate3')"
+                                    [isTouched]="f.issuedDate3.touched"
+                                    [isInvalid]="getFieldValidation('issuedDate3')" (date2)="checkDate($event, 'issuedDate3')"></app-date-picker1>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-4 col-form-label textLabel">Ngày hết hiệu lực
+                  <span style="color: red;">(*)</span>
+                </label>
+                <div class="col-sm-8">
+                  <app-date-picker1 [message]="dpMessage('expiredDate3')"
+                                    [date]="detailProcess.getEditDate(detailProcess.expireDate3)"
+                                    (dateOnInput)="checkDate($event, 'expiredDate3')"
+                                    [isTouched]="f.expiredDate3.touched"
+                                    [isInvalid]="getFieldValidation('expiredDate3')" (date2)="checkDate($event, 'expiredDate3')"></app-date-picker1>
+                </div>
+              </div>
+            </ng-template>
+
+          </div>
+        </div>
+        <label class="labelTitle" style="clear: both;">Địa chỉ hiện tại<span style="color: red;">(*)</span></label>
+        <div class="col-12" style="clear: both;">
+          <div class="col-6 colLeft">
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label textLabel">Quốc gia
+                <span style="color: red;">(*)</span>
+              </label>
+              <div class="col-sm-8">
+                <ng-select tabIndex="{{tabIndex.ccountryCode}}" [items]="categories.countries"
+                           formControlName="currentCountry" name="currentCountry" placeholder="-- Chọn quốc gia --"
+                           (change)="onInput('currentCountry', true)" [ngClass]="{'is-invalid': getFieldValidation('currentCountry')}"
+                           bindLabel="name" bindValue="id">
+                  <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                    <div class="ng-option disabled">
+                      Không tìm thấy dữ liệu cho "{{searchTerm}}"
+                    </div>
+                  </ng-template>
+                </ng-select>
+                <div class="invalid-feedback">
+                  <div>Quốc gia không được để trống</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label textLabel">Quận/Huyện
+                <span style="color: red;">(*)</span>
+              </label>
+              <div class="col-sm-8">
+                <ng-select tabIndex="{{tabIndex.cdistrictCode}}" [items]="categories.currentDistricts" [addTag]="true"
+                           formControlName="currentDistrict" name="currentDistrict" placeholder="-- Chọn quận/huyện --"
+                           (change)="onInput('currentDistrict', true, '', $event)"
+                           [ngClass]="{'is-invalid': getFieldValidation('currentDistrict')}" bindLabel="name" bindValue="name">
+                  <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                    <div class="ng-option disabled">
+                      Không tìm thấy dữ liệu cho "{{searchTerm}}"
+                    </div>
+                  </ng-template>
+                  <ng-template ng-tag-tmp let-search="searchTerm">
+                    <b>Thêm</b>: {{search}}
+                  </ng-template>
+                </ng-select>
+                <div class="invalid-feedback">
+                  <div>Quốc gia không được để trống</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label textLabel">Số nhà, đường phố
+                <span style="color: red;">(*)</span>
+              </label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control form-control-sm inputText is-invalid"
+                       formControlName="currentAddress" name="currentAddress" tabindex="{{tabIndex.cstreetNumber}}"
+                       placeholder="Nhập địa chỉ số nhà, đường phố" maxlength="200" (input)="onInput('currentAddress')"
+                       [ngClass]="{'is-invalid': getFieldValidation('currentAddress')}">
+                <div class="invalid-feedback">
+                  <div>Số nhà, đường phố {{getValidatorMessage('currentAddress')}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 colRight">
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label textLabel">Tỉnh/Thành phố
+                <span style="color: red;">(*)</span>
+              </label>
+              <div class="col-sm-8">
+                <ng-select [items]="tmpCities" tabindex="{{tabIndex.ccityCode}}" [addTag]="true"
+                           formControlName="currentProvince" name="currentProvince" placeholder="-- Chọn tỉnh/thành phố --"
+                           (change)="onInput('currentProvince', true, '', $event)"
+                           [ngClass]="{'is-invalid': getFieldValidation('currentProvince')}" bindLabel="name" bindValue="name">
+                  <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                    <div class="ng-option disabled">
+                      Không tìm thấy dữ liệu cho "{{searchTerm}}"
+                    </div>
+                  </ng-template>
+                  <ng-template ng-tag-tmp let-search="searchTerm">
+                    <b>Thêm</b>: {{search}}
+                  </ng-template>
+                </ng-select>
+                <div class="invalid-feedback">
+                  <div>Tỉnh/ thành phố không được để trống</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label textLabel">Phường xã
+                <span style="color: red;">(*)</span>
+              </label>
+              <div class="col-sm-8">
+                <ng-select [items]="categories.currentWards" tabindex="{{tabIndex.cwardCode}}" [addTag]="true"
+                           formControlName="currentWards" name="currentWards" placeholder="-- Chọn phường/xã --"
+                           (change)="onInput('currentWards', true, '', $event)"
+                           [ngClass]="{'is-invalid': getFieldValidation('currentWards')}"
+                           bindLabel="name" bindValue="name">
+                  <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                    <div class="ng-option disabled">
+                      Không tìm thấy dữ liệu cho "{{searchTerm}}"
+                    </div>
+                  </ng-template>
+                  <ng-template ng-tag-tmp let-search="searchTerm">
+                    <b>Thêm</b>: {{search}}
+                  </ng-template>
+                </ng-select>
+                <div class="invalid-feedback">
+                  <div>Phường xã không được để trống</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12" style="clear: both;">
+          <label class="labelTitle col-sm-2 " style="float: left;padding: 0px;">Địa chỉ thường trú<span
+            style="color: red;">(*)</span></label>
+          <div class="col-sm-8" style="float: left;">
+            <div class=" form-check-inline">
+              <section class="example-section">
+                <mat-checkbox color="primary" (change)="onCheckSameAddress($event.checked)" class="example-margin"
+                              style="color: #1F69BC">Trùng với địa chỉ hiện tại</mat-checkbox>
+              </section>
+            </div>
+          </div>
+        </div>
+        <div class="col-12" style="clear: both;">
+          <div class="col-6 colLeft">
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label textLabel">Quốc gia
+                <span style="color: red;">(*)</span>
+              </label>
+              <div class="col-sm-8">
+                <ng-select [items]="categories.countries" tabindex="{{tabIndex.rcountryCode}}"
+                           formControlName="permanentCountry" name="permanentCountry" placeholder="-- Chọn quốc gia --"
+                           (change)="onInput('permanentCountry', true)"
+                           [ngClass]="{'is-invalid': getFieldValidation('permanentCountry')}" bindLabel="name" bindValue="id">
+                  <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                    <div class="ng-option disabled">
+                      Không tìm thấy dữ liệu cho "{{searchTerm}}"
+                    </div>
+                  </ng-template>
+                </ng-select>
+                <div class="invalid-feedback">
+                  <div>Quốc gia phố không được để trống</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label textLabel">Quận/Huyện
+                <span style="color: red;">(*)</span>
+              </label>
+              <div class="col-sm-8">
+                <ng-select [items]="categories.permanentDistricts" tabindex="{{tabIndex.rdistrictCode}}" [addTag]="true"
+                           formControlName="permanentDistrict" name="permanentDistrict" placeholder="-- Chọn quận/huyện --"
+                           (change)="onInput('permanentDistrict', true, '', $event)"
+                           [ngClass]="{'is-invalid': getFieldValidation('permanentDistrict')}" bindLabel="name" bindValue="name">
+                  <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                    <div class="ng-option disabled">
+                      Không tìm thấy dữ liệu cho "{{searchTerm}}"
+                    </div>
+                  </ng-template>
+                  <ng-template ng-tag-tmp let-search="searchTerm">
+                    <b>Thêm</b>: {{search}}
+                  </ng-template>
+                </ng-select>
+                <div class="invalid-feedback">
+                  <div>Quận/Huyện không được để trống</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label textLabel">Số nhà, đường phố
+                <span style="color: red;">(*)</span>
+              </label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control form-control-sm inputText" formControlName="permanentAddress"
+                       name="permanentAddress" tabindex="{{tabIndex.rstreetNumber}}"
+                       placeholder="Nhập địa chỉ số nhà, đường phố" maxlength="200" (input)="onInput('permanentAddress')"
+                       [ngClass]="{'is-invalid': getFieldValidation('permanentAddress')}">
+                <div class="invalid-feedback">
+                  <div>Số nhà, đường phố {{getValidatorMessage('permanentAddress')}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 colRight">
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label textLabel">Tỉnh/Thành phố
+                <span style="color: red;">(*)</span>
+              </label>
+              <div class="col-sm-8">
+                <ng-select tabIndex="{{tabIndex.rcityCode}}" [items]="tmpCities" [addTag]="true"
+                           formControlName="permanentProvince" name="permanentProvince" placeholder="-- Chọn tỉnh/thành phố --"
+                           (change)="onInput('permanentProvince', true, '', $event)"
+                           [ngClass]="{'is-invalid': getFieldValidation('permanentProvince')}" bindLabel="name" bindValue="name">
+                  <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                    <div class="ng-option disabled">
+                      Không tìm thấy dữ liệu cho "{{searchTerm}}"
+                    </div>
+                  </ng-template>
+                  <ng-template ng-tag-tmp let-search="searchTerm">
+                    <b>Thêm</b>: {{search}}
+                  </ng-template>
+                </ng-select>
+                <div class="invalid-feedback">
+                  <div>Tỉnh/Thành phố không được để trống</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label textLabel">Phường xã
+                <span style="color: red;">(*)</span>
+              </label>
+              <div class="col-sm-8">
+                <ng-select [items]="categories.permanentWards" tabindex="{{tabIndex.rwardCode}}" [addTag]="true"
+                           formControlName="permanentWards" name="permanentWards" placeholder="-- Chọn phường/xã --"
+                           (change)="onInput('permanentWards', true, '', $event)" [ngClass]="{'is-invalid': getFieldValidation('permanentWards')}"
+                           bindLabel="name" bindValue="name">
+                  <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                    <div class="ng-option disabled">
+                      Không tìm thấy dữ liệu cho "{{searchTerm}}"
+                    </div>
+                  </ng-template>
+                  <ng-template ng-tag-tmp let-search="searchTerm">
+                    <b>Thêm</b>: {{search}}
+                  </ng-template>
+                </ng-select>
+                <div class="invalid-feedback">
+                  <div>Phường xã không được để trống</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12" style="clear: both;padding: 0px;border: 1px solid #828282;">
+          <label class="labelTitle" style="padding: 0.5em;" (click)="showPopupMIS()">THÔNG TIN TRƯỜNG MIS</label>
+        </div>
+        <div class="col-12" style="clear: both;padding: 0px;border: 1px solid #828282;">
+          <label class="labelTitle" style="padding: 0.5em;" (click) = "showPopupUDF()">THÔNG TIN TRƯỜNG UDF</label>
+        </div>
+        <div class="col-12" style="clear: both;padding: 0px;border: 1px solid #828282;display: flex;">
+          <label class="labelTitle" style="padding: 0.5em;display: block;">THÔNG TIN FATCA</label>
+          <div style="float: left;display: block;margin-left: 10px;">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" (change)="checkRadioFATCA($event,1)" type="radio" name="radioOptions" >
+              <label class="form-check-label" for="radio1">Có</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" (change)="checkRadioFATCA($event,2)" name="radioOptions" checked>
+              <label class="form-check-label" for="radio2">Không</label>
+            </div>
+          </div>
+        </div>
+        <div class="col-12" style="clear: both;padding: 0px;display: flex;" [hidden]="!showContentFATCA">
+          <div class="col-6 colLeft">
+            <label class="col-sm-4 col-form-label textLabel"  style="float: left;">Phân loại FATCA
+              <span style="margin-left: 5px; color: red;">(*)</span>
+            </label>
+            <div class="col-sm-8 " style="float: left;">
+              <select class="form-control form-control-sm"  name="typeFatca">
+                <option value="" disabled selected>-- Chọn FATCA --</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-6 colRight">
+            <label class="col-sm-4 col-form-label textLabel" style="float: left;">Mã số thuế
+              <span style="margin-left: 5px; color: red;">(*)</span>
+            </label>
+            <div class="col-sm-8 " style="float: left;">
+              <input type="text" class="form-control form-control-sm"/>
+            </div>
+          </div>
+        </div>
+        <label class="labelTitle" style="clear: both;padding-bottom: 15px;border-bottom: 1px solid #BDBDBD;"
+               *ngIf="showFatca">Thông tin FATCA</label>
+        <div class="col-12" style="padding-left: 70px;padding-bottom: 20px; display: block" *ngIf="showFatca">
+          <div>
+            <mat-radio-group formControlName="fatcaW9" name="fatcaW9" tabindex="{{tabIndex.fatcaId1}}">
+              <mat-radio-button color="primary" value="IS.AMERICAN" style="padding-right: 20px">Có (vui lòng khai báo bổ
+                sung mẫu biểu W9)</mat-radio-button>
+              <mat-radio-button color="primary" value="NOT.AMERICAN">Không là công dân Mỹ hoặc đối tượng cư trú tại Mỹ.
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div>
+            <mat-radio-group formControlName="fatcaW8" name="fatcaW8" style="display: flex;"
+                             tabindex="{{tabIndex.fatcaId2}}">
+              <mat-radio-button color="primary" value="HAVE.GCARD" style="padding-right: 20px; position: relative">Có
+                (vui lòng khai báo bổ sung mẫu biểu W8)</mat-radio-button>
+              <mat-radio-button color="primary" value="NO.GCARD">
+              </mat-radio-button>
+              <span style="white-space: normal !important;">
+                Không (i) có thẻ xanh do Chính phủ Mỹ cấp hoặc (ii) sinh tại
+                Mỹ hoặc (iii) có địa chỉ/số điện thoại tại Mỹ hoặc (iv) thường xuyên thanh toán đến một địa chỉ/tài
+                khoản Mỹ hoặc (v)
+                được ủy quyền hoặc cấp thẩm quyền ký còn hiệu lực cho một đối tượng có địa chỉ tại Mỹ
+              </span>
+            </mat-radio-group>
+          </div>
+        </div>
+        <label class="labelTitle" style="clear: both;padding-top: 10px;color: #252834">ĐỒNG THỜI ĐĂNG KÝ DỊCH VỤ (//todo)</label>
+        <div class="col-12" style="padding-left: 70px;">
+          <ul style="list-style-type: none; padding-left: 0">
+            <li>
+              <mat-checkbox color="primary" tabindex="{{tabIndex.openNewAcc}}">
+                Mở mới tài khoản</mat-checkbox>
+            </li>
+            <li>
+              <mat-checkbox color="primary" tabindex="{{tabIndex.cardService}}">
+                Dịch vụ thẻ</mat-checkbox>
+            </li>
+          </ul>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div style="height: 38px;display: block;clear: both;"></div>
+<div class="row" style="margin:0px;position: fixed;width: 100%;bottom: 0px;background: #23388F;">
+  <div class="col-12" style="text-align: right;padding: 0px;cursor: pointer;margin: 0px;">
+    <div class="footer" (click)="save()" style="padding-right: 20px;">
+      <span class="material-icons" style="cursor: pointer;">
+        {{detailProcess && detailProcess.processId ? 'edit' : 'save'}}
+      </span>
+      <label style="padding: 3px 5px 5px 5px !important;cursor: pointer;">{{detailProcess && detailProcess.processId ? 'Cập nhật giao dịch' : 'Lưu giao dịch'}}</label>
+    </div>
+    <div class="footer" (click)="backPage()"  style="cursor: pointer;">
+      <span class="material-icons" style="cursor: pointer;">
+        keyboard_backspace
+      </span>
+      <label style="padding: 3px 5px 5px 5px !important;cursor: pointer;">Trở về trang trước</label>
+    </div>
+  </div>
+</div>

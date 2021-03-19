@@ -1,0 +1,88 @@
+<div class="topnav" id="myTopnav">
+  <div id="css-menu">
+    <img src="assets/img/lienviet.png">
+    <a class="menu-nav" style="width: 130px;"><i class="fa fa-bell" aria-hidden="true" style="margin-right: 3px;"></i>
+      Thông báo
+    </a>
+    <a class="dropdown menu-nav menuParent" style="width: 130px;">
+      <i class="fa fa-star" aria-hidden="true" menu-data='REGISTER_SERVICES' style="margin-right: 5px;"></i><label>Đăng
+        ký dịch vụ</label>
+      <div class="dropdown-content">
+        <a class="checkPermission" routerLink="./fileProcessed" permission-data='REGISTER_SERVICES_INDIVIDUAL_CUSTOMERS'>Khách hàng cá
+          nhân</a>
+        <div class="dropdown-divider"></div>
+        <a class="checkPermission" permission-data='REGISTER_SERVICES_BUSINESS_CUSTOMERS' href="#">Khách hàng doanh nghiệp</a>
+        <!-- <div class="dropdown-divider"></div>
+        <a href="#" class="checkPermission" permission-data=''>Mở ví việt</a> -->
+      </div>
+    </a>
+    <a class="dropdown menu-nav menuParent" style="width: 130px;">
+      <i class="fa fa-folder-open" menu-data='PROCESS_MANAGEMENT' aria-hidden="true"
+        style="margin-right: 3px;"></i><label>Quản lý hồ sơ</label>
+      <div class="dropdown-content">
+        <a routerLink="./process/list" class="checkPermission" permission-data='PROCESS_MANAGEMENT_LIST'>Danh sách hồ sơ</a>
+        <a class="checkPermission" routerLink="./fileProcessed" permission-data='LIST_OF_PENDING_RECORDS'>
+          Danh sách hồ sơ đang xử lý
+        </a>
+        <div class="dropdown-divider"></div>
+        <a class="checkPermission" permission-data='PROCESS_MANAGEMENT_ATTACHED_FILE'>Quản lý tài liệu đính kèm</a>
+        <div class="dropdown-divider"></div>
+        <a class="checkPermission" permission-data='PROCESS_MANAGEMENT_SIGNATRUE'>Quản lý chữ ký</a>
+      </div>
+    </a>
+    <a class="dropdown menu-nav menuParent" style="width: 130px;">
+      <i class="fa fa-cog" aria-hidden="true" menu-data='SYSTEM_MANAGEMENT' style="margin-right: 5px;"></i>
+      <label>Quản trị hệ thống</label>
+      <div class="dropdown-content">
+        <a  class="checkPermission" (click)="clickMenuAdmin(0)"  permission-data='SYS_MANAGEMENT_USER'>Quản lý người dùng</a>
+        <div class="dropdown-divider"></div>
+        <a  class="checkPermission" (click)="clickMenuAdmin(1)" permission-data='SYS_MANAGEMENT_TITLE'>Quản lý chức danh</a>
+        <div class="dropdown-divider"></div>
+        <a  class="checkPermission" (click)="clickMenuAdmin(2)" permission-data='SYS_MANAGEMENT_ROLE'>Quản lý role</a>
+        <div class="dropdown-divider"></div>
+        <a  class="checkPermission" (click)="clickMenuAdmin(3)" permission-data='SYS_MANAGEMENT_FUNCTION'>Quản lý function</a>
+        <div class="dropdown-divider"></div>
+        <a  class="checkPermission" (click)="clickMenuAdmin(4)" permission-data='SYS_MANAGEMENT_ACTION'>Quản lý hành động</a>
+        <div class="dropdown-divider"></div>
+        <a  class="checkPermission" (click)="clickMenuAdmin(5)" permission-data='SYS_MANAGEMENT_ROLE_MAPPING'>Map quyền</a>
+      </div>
+    </a>
+    <a class="dropdown menu-nav menuParent" style="width: 130px;">
+      <i class="fa fa-pie-chart " aria-hidden="true" menu-data='REPORT' style="margin-right: 5px;"></i><label>Báo
+        cáo</label>
+      <div class="dropdown-content">
+        <a class="checkPermission" permission-data='REPORT_SYNTHESIS'>Báo cáo tổng hợp</a>
+        <div class="dropdown-divider"></div>
+        <a class="checkPermission" permission-data='REPORT_DETAIL'>Báo cáo chi tiết</a>
+        <div class="dropdown-divider"></div>
+        <a class="checkPermission" permission-data='REPORT_SLA'>Báo cáo SLA</a>
+      </div>
+    </a>
+    <a class="admin-right dropdown menu-nav" style="float: right;">
+      <i class="fa fa-user" aria-hidden="true" style="margin-right: 5px;"></i>{{name}}
+      <div class="dropdown-content" (click)="logout()" style="left: unset;
+      right: 5px;
+      min-width: 100px;">
+        <a>Logout</a>
+      </div>
+    </a>
+    <!-- <div style="clear: both;"> -->
+    <nav aria-label="breadcrumb" class="customBreadcrumb"
+      style="border-top: 5px solid #F47326;border-bottom: 1px solid #c8ced3;">
+      <ol class="breadcrumb">
+        <!-- <li class="breadcrumb-item" style="padding-top: 6px;padding-bottom: 6px;"><a style="width: auto;padding-left: 15px;font-size: 14px;">Trang chủ</a></li> -->
+        <li class="breadcrumb-item" style="padding-top: 6px;padding-bottom: 6px;padding-left: 10px"><a
+            style="width: auto;font-size: 14px;cursor: default;" class="parentName"></a></li>
+        <li class="breadcrumb-item active" aria-current="page" style="padding-bottom: 6px;padding-top: 6px;"><a
+            style="width: auto;font-size: 14px;font-weight: 400;cursor: default;" class="childName"></a></li>
+        <span class="ml-auto" style="    height: auto;
+          padding-top: 7px;
+          padding-right: 10px;">Ngày hệ thống {{ time | date: 'dd/MM/yyyy HH:mm:ss aa' }}</span>
+      </ol>
+    </nav>
+  </div>
+  <div style="height: 90px"></div>
+</div>
+<div style="clear: both;">
+  <router-outlet></router-outlet>
+</div>

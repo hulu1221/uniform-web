@@ -1,0 +1,118 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3 float-left" style="padding: 0px;">
+            <app-menu-tree></app-menu-tree>
+        </div>
+        <div class="col-9 float-left" style="padding: 0px;">
+            <div class="col-12 titleSearch">
+                <i class="fa fa-plus-square" aria-hidden="true" style="color:#23388F;padding-left: 15px;"></i>
+                <span style="color: #23388F;padding-left: 10px;">THÔNG TIN KHÁCH HÀNG</span>
+            </div>
+            <div class="col-12" style="padding: 0px;display: flex; border-bottom: 1px solid #BDBDBD;">
+                <div class="col-6 colLeft">
+                    <div class="form-group row" style="padding-top: 35px;">
+                        <label for="inputEmail3" class="col-sm-5 col-form-label textLabel">Mã khách hàng
+                        </label>
+                        <div class="col-sm-7 txt">
+                        <label>XXXXX</label>
+                        </div>
+                    </div>
+                    <div class="form-group row" >
+                        <label for="inputEmail3" class="col-sm-5 col-form-label textLabel">Ngày sinh
+                        </label>
+                        <div class="col-sm-7 txt">
+                        <label>11/09/1998</label>
+                        </div>
+                    </div>
+                    <div class="form-group row" >
+                        <label for="inputEmail3" class="col-sm-5 col-form-label textLabel">Địa chỉ email
+                        </label>
+                        <div class="col-sm-7 txt">
+                        <label>thaont8@gmail.com</label>
+                        </div>
+                    </div>
+                    <div class="form-group row" >
+                        <label for="inputEmail3" class="col-sm-5 col-form-label textLabel">Số giấy tờ xác minh
+                        </label>
+                        <div class="col-sm-7 txt">
+                        <label>026198002425</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 colRight">
+                    <div class="form-group row" style="padding-top: 35px;">
+                        <label for="inputEmail3" class="col-sm-5 col-form-label textLabel">Họ và tên
+                        </label>
+                        <div class="col-sm-7 txt">
+                        <label>NGUYEN THU THAO</label>
+                        </div>
+                    </div>
+                    <div class="form-group row" >
+                        <label for="inputEmail3" class="col-sm-5 col-form-label textLabel">Giới tính
+                        </label>
+                        <div class="col-sm-7 txt">
+                        <label>Nữ</label>
+                        </div>
+                    </div>
+                    <div class="form-group row" >
+                        <label for="inputEmail3" class="col-sm-5 col-form-label textLabel">Điện thoại di động
+                        </label>
+                        <div class="col-sm-7 txt">
+                        <label>0398434888</label>
+                        </div>
+                    </div>
+                    <div class="form-group row" >
+                        <label for="inputEmail3" class="col-sm-5 col-form-label textLabel">Trạng thái
+                        </label>
+                        <div class="col-sm-7 txt">
+                        <label>Khởi tạo</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 titleSearch" style="display: flex;">
+                <div class="col-6" style="float: left;padding-top: 10px;">
+                    <i class="fa fa-folder-open" aria-hidden="true" style="color:#23388F;"></i>
+                    <span style="color: #23388F;padding-left: 10px;">DANH SÁCH TÀI KHOẢN</span>
+                </div>
+                <div class="col-6" style="float: left;text-align: right;">
+                    <button type="button" class="btn btn-primary" style="background: #23388F;" (click)="createAccount()">
+                        <mat-icon aria-hidden="false" style="display: block;float: left;">add</mat-icon>
+                        <span style="display: block;float: left;">Thêm mới</span>
+                    </button>
+                </div>
+                
+                
+            </div>
+            <div class="col-12" >
+                <table class="table" style="margin-top: 20px;">
+                    <tr>
+                        <th>Số tài khoản</th>
+                        <th>Tên tài khoản</th>
+                        <th>Loại tài khoản</th>
+                        <th>Loại tiền tệ</th>
+                        <th>Hình thức sở hữu</th>
+                        <th>Trạng thái</th>
+                    </tr>
+                    <tr>
+                        <!-- <td colspan="6" style="text-align: center;">Không có dữ liệu</td> -->
+                        <td (click)="detailAccount()" style="cursor: pointer;">1873787389073</td>
+                        <td>ABCGFJF - 12345678</td>
+                        <td>Tài khoản cá nhân</td>
+                        <td>VNĐ</td>
+                        <td>Cá nhân</td>
+                        <td>Đang xử lý</td>
+                    </tr>
+                    <tr>
+                        <td (click)="detailAccount()" style="cursor: pointer;">1234947975760</td>
+                        <td>EFHTDSH - 12345678</td>
+                        <td>Tài khoản cá nhân</td>
+                        <td>VNĐ</td>
+                        <td>Cá nhân</td>
+                        <td>Đang xử lý</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

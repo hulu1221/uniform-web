@@ -1,0 +1,714 @@
+<div class="container-fuild" style="margin-top: 5px;">
+  <div class="row cust-row" style="margin-left: 5px;
+  margin-right: 3px;">
+    <div class="col-12" style="padding: 0px;">
+      <div class="p-2" style="font-weight: 500;border-bottom: 1px solid #c8ced3;">
+        <span>THÔNG TIN HỒ SƠ</span>
+      </div>
+      <div class="col-12" style="margin-top: 10px; margin-bottom: 5px;">
+        <div class="col-6 colLeft">
+          <div class="row">
+            <label class="col-sm-5 col-form-label textLabel">Mã hồ sơ
+            </label>
+            <div class="col-sm-7 txt">
+              <label>{{process.code}}</label>
+            </div>
+          </div>
+          <div class="row">
+            <label class="col-sm-5 col-form-label textLabel">Người tạo
+            </label>
+            <div class="col-sm-7 txt">
+              <label>{{process.inputter}}</label>
+            </div>
+          </div>
+          <div class="row">
+            <label class="col-sm-5 col-form-label textLabel">Loại hồ sơ
+            </label>
+            <div class="col-sm-7 txt">
+              <label>{{process.regisTypeName}}</label>
+            </div>
+          </div>
+          <div class="row">
+            <label class="col-sm-5 col-form-label textLabel">Tải hồ sơ đã ký
+            </label>
+            <div class="col-sm-7 txt">
+              <label></label>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 colRight">
+          <div class="row">
+            <label class="col-sm-5 col-form-label textLabel">Trạng thái
+            </label>
+            <div class="col-sm-7 txt">
+              <label (click)="openHistoryDialog()" style="color: #23388F;cursor: pointer;">{{process.statusName}}</label>
+            </div>
+          </div>
+          <div class="row">
+            <label class="col-sm-5 col-form-label textLabel">Ngày tạo
+            </label>
+            <div class="col-sm-7 txt">
+              <label>{{process.getDateCreated()}}</label>
+            </div>
+          </div>
+          <div class="row">
+            <label class="col-sm-5 col-form-label textLabel">Xác nhận bằng chữ ký số
+            </label>
+            <div class="col-sm-7 txt">
+              <label></label>
+            </div>
+          </div>
+          <div class="row">
+            <label class="col-sm-5 col-form-label textLabel">Chi nhánh
+            </label>
+            <div class="col-sm-7 txt">
+              <label>{{process.branchName}}</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row cust-row" style="margin-left: 5px;
+  margin-right: 3px;margin-top: 5px;">
+    <div class="col-12" style="border-bottom: 1px solid #c8ced3;padding: 0px;">
+      <div class="p-2" style="font-weight: 500;">
+        <span>THÔNG TIN KHÁCH HÀNG</span>
+      </div>
+    </div>
+    <div class="col-12" style="margin-top: 10px; margin-bottom: 5px;">
+      <div class="col-6 colLeft">
+        <div class="row">
+          <label class="col-sm-5 col-form-label textLabel">Họ và tên:
+          </label>
+          <div class="col-sm-7 txt">
+            <label>{{detailProcess.fullName}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <label class="col-sm-5 col-form-label textLabel">Giới tính:
+          </label>
+          <div class="col-sm-7 txt">
+            <label>{{detailProcess.genderName}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <label class="col-sm-5 col-form-label textLabel">Số giấy tờ xác minh:
+          </label>
+          <div class="col-sm-7 txt">
+            <label>{{detailProcess.perDocNo}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <label class="col-sm-5 col-form-label textLabel">Ngày cấp:
+          </label>
+          <div class="col-sm-7 txt">
+            <label>{{detailProcess.getIssueDate()}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <label class="col-sm-5 col-form-label textLabel">Ngày hết hiệu lực:
+          </label>
+          <div class="col-sm-7 txt">
+            <label>{{detailProcess.getExpireDate()}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <label class="col-sm-5 col-form-label textLabel">Người cư trú:
+          </label>
+          <div class="col-sm-7 txt">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input checked" disabled name="exampleRadios" type="radio" id="exampleRadios1"
+                [checked]="detailProcess.residence">
+              <label class="form-check-label" for="exampleRadios1" style="color: black">Có</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" disabled name="exampleRadios" type="radio" id="exampleRadios2"
+                [checked]="!detailProcess.residence">
+              <label class="form-check-label" for="exampleRadios2" style="color: black">Không</label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <label class="col-sm-5 col-form-label textLabel">Chức vụ:
+          </label>
+          <div class="col-sm-7 txt">
+            <label>{{detailProcess.position}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <label class="col-sm-5 col-form-label textLabel">Tình trạng hôn nhân:
+          </label>
+          <div class="col-sm-7 txt">
+            <label>{{detailProcess.maritalStatusName}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <label class="col-sm-5 col-form-label textLabel">Trình độ học vấn:
+          </label>
+          <div class="col-sm-7 txt">
+            <label>{{detailProcess.educationName}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <label class="col-sm-5 col-form-label textLabel">Quốc tịch:
+          </label>
+          <div class="col-sm-7 txt">
+            <label>{{detailProcess.nationalityName}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <label class="col-sm-5 col-form-label textLabel">Thu nhập:
+          </label>
+          <div class="col-sm-7 txt">
+            <label>{{detailProcess.income}}</label>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-6 colRight">
+        <div class="row">
+          <label class="col-sm-5 col-form-label textLabel">Mã CIF:
+          </label>
+          <div class="col-sm-7 txt">
+            <label style="color: #23388F;">{{detailProcess.customerCode}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <label class="col-sm-5 col-form-label textLabel">Ngày sinh:
+          </label>
+          <div class="col-sm-7 txt">
+            <label>{{detailProcess.getBirthDay()}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <label class="col-sm-5 col-form-label textLabel">Loại giấy tờ tùy thân:
+          </label>
+          <div class="col-sm-7 txt">
+            <label>{{detailProcess.perDocTypeName}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <label class="col-sm-5 col-form-label textLabel">Nơi cấp:
+          </label>
+          <div class="col-sm-7 txt">
+            <label>{{detailProcess.issuePlace}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <label class="col-sm-5 col-form-label textLabel">Điên thoại di động:
+          </label>
+          <div class="col-sm-7 txt">
+            <label>{{detailProcess.mobilePhone}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <label class="col-sm-5 col-form-label textLabel">Nơi sinh:
+          </label>
+          <div class="col-sm-7 txt">
+            <label>{{detailProcess.bornOfPlace}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <label class="col-sm-5 col-form-label textLabel">Nghề nghiệp:
+          </label>
+          <div class="col-sm-7 txt">
+            <label>{{detailProcess.industryName}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <label class="col-sm-5 col-form-label textLabel">Mã nhân viên:
+          </label>
+          <div class="col-sm-7 txt">
+            <label>{{detailProcess.employeeId}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <label class="col-sm-5 col-form-label textLabel">Chi nhánh / PGD:
+          </label>
+          <div class="col-sm-7 txt">
+            <label>{{detailProcess.branchName}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <label class="col-sm-5 col-form-label textLabel">Địa chỉ email:
+          </label>
+          <div class="col-sm-7 txt">
+            <label>{{detailProcess.email}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <label class="col-sm-5 col-form-label textLabel">
+          </label>
+          <div class="col-sm-7 txt">
+            <div class="form-check form-check-inline">
+              <input disabled class="form-check-input" name="exampleRadios" type="checkbox"
+                [checked]="detailProcess.salaryInBank">
+              <label class="form-check-label" style="color: black">Nhận lương qua LienVietPostBank</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12" style="display: block;font-weight: 900;font-size: 15px;">
+      <div class="p-2" style="font-weight: 500;border-bottom: 1px solid #c8ced3;">
+        <span>Địa chỉ hiện tại</span>
+      </div>
+    </div>
+    <div class="col-12" style="padding: 15px 0px 15px 0px;display: flex;">
+      <div class="col-6 colLeft">
+        <div class="row">
+          <label class="col-sm-5 col-form-label textLabel">Quốc gia:
+          </label>
+          <div class="col-sm-7 txt">
+            <label>Việt Nam</label>
+          </div>
+        </div>
+        <div class="row">
+          <label class="col-sm-5 col-form-label textLabel">Quận/huyện:
+          </label>
+          <div class="col-sm-7 txt">
+            <label>{{detailProcess.cdistrictName}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <label class="col-sm-5 col-form-label textLabel">Số nhà, đường phố:
+          </label>
+          <div class="col-sm-7 txt">
+            <label>{{detailProcess.cstreetNumber}}</label>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 colRight">
+        <div class="row">
+          <label class="col-sm-5 col-form-label textLabel">Tỉnh/thành phố:
+          </label>
+          <div class="col-sm-7 txt">
+            <label>{{detailProcess.ccityName}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <label class="col-sm-5 col-form-label textLabel">Phường/xã:
+          </label>
+          <div class="col-sm-7 txt">
+            <label>{{detailProcess.cwardName}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12" style="display: block;font-weight: 900;font-size: 15px;">
+      <div class="p-2" style="font-weight: 500;border-bottom: 1px solid #c8ced3;">
+        <span>Địa chỉ phường trú</span>
+      </div>
+    </div>
+    <div class="col-12" style="padding: 15px 0px 15px 0px;display: flex;">
+      <div class="col-6 colLeft">
+        <div class="row">
+          <label class="col-sm-5 col-form-label textLabel">Quốc gia:
+          </label>
+          <div class="col-sm-7 txt">
+            <label>{{detailProcess.nationalityName}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <label class="col-sm-5 col-form-label textLabel">Quận/huyện:
+          </label>
+          <div class="col-sm-7 txt">
+            <label>{{detailProcess.rdistrictName}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <label class="col-sm-5 col-form-label textLabel">Số nhà, đường phố:
+          </label>
+          <div class="col-sm-7 txt">
+            <label>{{detailProcess.rstreetNumber}}</label>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 colRight">
+        <div class="row">
+          <label class="col-sm-5 col-form-label textLabel">Tỉnh/thành phố:
+          </label>
+          <div class="col-sm-7 txt">
+            <label>{{detailProcess.rcityName}}</label>
+          </div>
+        </div>
+        <div class="row">
+          <label class="col-sm-5 col-form-label textLabel">Phường/xã:
+          </label>
+          <div class="col-sm-7 txt">
+            <label>{{detailProcess.rwardName}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="row cust-row" style="margin-left: 5px;
+  margin-right: 3px;margin-top: 5px;">
+    <div class="float-right" style="text-align: right;width: 100%;">
+      <div class="float-right" style="text-align: right;width: 100%;padding:5px;">
+        <button type="button" class="btn btn-color" (click)="update(detailProcess.processId)"
+          style="width: 180px;color: white;">Cập nhật thông tin</button>
+      </div>
+    </div>
+  </div> -->
+</div>
+<div style="height: 50px;display: block;clear: both;"></div>
+<div class="row footer-row" style="padding: 0px;background: #23388F;">
+  <div class="col-12" style="text-align: right;padding: 0px;cursor: pointer;">
+    <div class="footer" (click)="update(detailProcess.processId)" style="padding-right: 20px;">
+      <span class="material-icons" style="cursor: pointer;">
+        edit
+      </span>
+      <label style="padding: 3px 5px 5px 5px !important;cursor: pointer;">Cập nhật thông tin</label>
+    </div>
+    <div class="footer" (click)="backPage()" style="cursor: pointer;">
+      <span class="material-icons" style="cursor: pointer;">
+        keyboard_backspace
+      </span>
+      <label style="padding: 3px 5px 5px 5px !important;cursor: pointer;">Trở về trang trước</label>
+    </div>
+  </div>
+</div>
+<!--
+<div class="col-12 titleSearch">
+  <i class="fa fa-plus-square" aria-hidden="true" style="color:#828282;"></i>
+  <span style="color: #252834;padding-left: 10px;">THÔNG TIN HỒ SƠ</span>
+</div>
+<div class="col-12" style="padding: 15px 0px 15px 0px;display: flex;border-bottom: 1px solid #BDBDBD;">
+  <div class="col-6 colLeft">
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">Mã hồ sơ
+      </label>
+      <div class="col-sm-7 txt">
+        <label>{{process.code}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">Người tạo
+      </label>
+      <div class="col-sm-7 txt">
+        <label>{{process.inputter}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">Loại khách hàng
+      </label>
+      <div class="col-sm-7 txt">
+        <label>{{process.customerTypeName}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">Tải hồ sơ đã ký
+      </label>
+      <div class="col-sm-7 txt">
+        <label></label>
+      </div>
+    </div>
+  </div>
+  <div class="col-6 colRight">
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">Trạng thái
+      </label>
+      <div class="col-sm-7 txt">
+        <label style="color: #23388F;">{{process.statusName}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">Ngày tạo
+      </label>
+      <div class="col-sm-7 txt">
+        <label>{{process.getDateCreated()}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">Xác nhận bằng chữ ký số
+      </label>
+      <div class="col-sm-7 txt">
+        <label></label>
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">Chi nhánh
+      </label>
+      <div class="col-sm-7 txt">
+        <label>{{process.branchName}}</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-12 titleSearch">
+  <i class="fa fa-folder-open" aria-hidden="true" style="color:#828282;"></i>
+  <span style="color: #252834;padding-left: 10px;">THÔNG TIN KHÁCH HÀNG</span>
+</div>
+<div class="col-12" style="padding: 15px 0px 15px 0px;display: flex;">
+  <div class="col-6 colLeft">
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">Họ và tên:
+      </label>
+      <div class="col-sm-7 txt">
+        <label>{{detailProcess.fullName}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">Giới tính:
+      </label>
+      <div class="col-sm-7 txt">
+        <label>{{detailProcess.genderName}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">Số giấy tờ xác minh:
+      </label>
+      <div class="col-sm-7 txt">
+        <label>{{detailProcess.perDocNo}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">Ngày cấp:
+      </label>
+      <div class="col-sm-7 txt">
+        <label>{{detailProcess.getIssueDate()}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">Ngày hết hiệu lực:
+      </label>
+      <div class="col-sm-7 txt">
+        <label>{{detailProcess.getExpireDate()}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">Người cư trú:
+      </label>
+      <div class="col-sm-7 txt">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input checked" disabled name="exampleRadios" type="radio" id="exampleRadios1"
+            [checked]="detailProcess.residence">
+          <label class="form-check-label" for="exampleRadios1" style="color: black">Có</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" disabled name="exampleRadios" type="radio" id="exampleRadios2"
+            [checked]="!detailProcess.residence">
+          <label class="form-check-label" for="exampleRadios2" style="color: black">Không</label>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">Chức vụ:
+      </label>
+      <div class="col-sm-7 txt">
+        <label>{{detailProcess.position}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">Tình trạng hôn nhân:
+      </label>
+      <div class="col-sm-7 txt">
+        <label>{{detailProcess.maritalStatusName}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">Trình độ học vấn:
+      </label>
+      <div class="col-sm-7 txt">
+        <label>{{detailProcess.educationName}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">Quốc tịch:
+      </label>
+      <div class="col-sm-7 txt">
+        <label>{{detailProcess.nationalityName}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">Thu nhập:
+      </label>
+      <div class="col-sm-7 txt">
+        <label>{{detailProcess.income}}</label>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-6 colRight">
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">Mã CIF:
+      </label>
+      <div class="col-sm-7 txt">
+        <label style="color: #23388F;">{{detailProcess.customerCode}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">Ngày sinh:
+      </label>
+      <div class="col-sm-7 txt">
+        <label>{{detailProcess.getBirthDay()}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">Loại giấy tờ tùy thân:
+      </label>
+      <div class="col-sm-7 txt">
+        <label>{{detailProcess.perDocTypeName}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">Nơi cấp:
+      </label>
+      <div class="col-sm-7 txt">
+        <label>{{detailProcess.issuePlace}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">Điên thoại di động:
+      </label>
+      <div class="col-sm-7 txt">
+        <label>{{detailProcess.mobilePhone}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">Nơi sinh:
+      </label>
+      <div class="col-sm-7 txt">
+        <label>{{detailProcess.bornOfPlace}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">Nghề nghiệp:
+      </label>
+      <div class="col-sm-7 txt">
+        <label>{{detailProcess.industryName}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">Mã nhân viên:
+      </label>
+      <div class="col-sm-7 txt">
+        <label>{{detailProcess.employeeId}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">Chi nhánh / PGD:
+      </label>
+      <div class="col-sm-7 txt">
+        <label>{{detailProcess.branchName}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">Địa chỉ email:
+      </label>
+      <div class="col-sm-7 txt">
+        <label>{{detailProcess.email}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">
+      </label>
+      <div class="col-sm-7 txt">
+        <div class="form-check form-check-inline">
+          <input disabled class="form-check-input" name="exampleRadios" type="checkbox"
+            [checked]="detailProcess.salaryInBank">
+          <label class="form-check-label" style="color: black">Nhận lương qua LienVietPostBank</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="col-12" style="display: block;font-weight: 900;font-size: 15px;">
+  <label class="labelTitle" style="clear: both;">Địa chỉ hiện tại</label>
+</div>
+<div class="col-12" style="padding: 15px 0px 15px 0px;display: flex;">
+  <div class="col-6 colLeft">
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">Quốc gia:
+      </label>
+      <div class="col-sm-7 txt">
+        <label>Việt Nam</label>
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">Quận/huyện:
+      </label>
+      <div class="col-sm-7 txt">
+        <label>{{detailProcess.cdistrictName}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">Số nhà, đường phố:
+      </label>
+      <div class="col-sm-7 txt">
+        <label>{{detailProcess.cstreetNumber}}</label>
+      </div>
+    </div>
+  </div>
+  <div class="col-6 colRight">
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">Tỉnh/thành phố:
+      </label>
+      <div class="col-sm-7 txt">
+        <label>{{detailProcess.ccityName}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">Phường/xã:
+      </label>
+      <div class="col-sm-7 txt">
+        <label>{{detailProcess.cwardName}}</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-12" style="display: block;font-weight: 900;font-size: 15px;">
+  <label class="labelTitle" style="clear: both;">Địa chỉ thường trú</label>
+</div>
+<div class="col-12" style="padding: 15px 0px 15px 0px;display: flex;">
+  <div class="col-6 colLeft">
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">Quốc gia:
+      </label>
+      <div class="col-sm-7 txt">
+        <label>{{detailProcess.nationalityName}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">Quận/huyện:
+      </label>
+      <div class="col-sm-7 txt">
+        <label>{{detailProcess.rdistrictName}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">Số nhà, đường phố:
+      </label>
+      <div class="col-sm-7 txt">
+        <label>{{detailProcess.rstreetNumber}}</label>
+      </div>
+    </div>
+  </div>
+  <div class="col-6 colRight">
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">Tỉnh/thành phố:
+      </label>
+      <div class="col-sm-7 txt">
+        <label>{{detailProcess.rcityName}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <label class="col-sm-5 col-form-label textLabel">Phường/xã:
+      </label>
+      <div class="col-sm-7 txt">
+        <label>{{detailProcess.rwardName}}</label>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-12" style="border-top: 1px solid #BDBDBD;border-bottom: unset;">
+  <div class="float-right" style="text-align: right;width: 100%;margin: 15px 0px 15px 0px;">
+    <button type="button" class="btn btn-color" (click)="update(detailProcess.processId)"
+      style="width: 180px;color: white;">Cập nhật thông tin</button>
+  </div>
+</div> -->

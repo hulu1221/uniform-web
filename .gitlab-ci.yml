@@ -1,0 +1,32 @@
+stages:
+  - build
+  - deploy
+
+build:
+  image: docker-registry.lienvietpostbank.com.vn:5000/docker:19.03.1
+  services:
+    - docker-registry.lienvietpostbank.com.vn:5000/docker-dind:19.03.1
+  stage: build
+  before_script:
+  - docker login -u uniform -p 123456a@ docker-registry.lienvietpostbank.com.vn:5000
+  script:
+    - docker build --no-cache . -t docker-registry.lienvietpostbank.com.vn:5000/uniform-web -f ./Dockerfile
+    - docker push docker-registry.lienvietpostbank.com.vn:5000/uniform-web
+  only:
+    - develop
+
+deploy-dev:
+  stage: deploy
+  image: docker-registry.lienvietpostbank.com.vn:5000/ssh-client
+  before_script:
+  - eval $(ssh-agent -s)
+  - ssh-add <(echo "$SSH_PRIVATE_KEY")
+  - mkdir -p ~/.ssh
+  - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+  script:
+    - ssh -p 22 -T uniform@10.36.126.153 "docker login -u uniform -p 123456a@ docker-registry.lienvietpostbank.com.vn:5000 && cd /home/uniform/uniform/dev && docker rm -f uniform-web && docker rmi -f docker-registry.lienvietpostbank.com.vn:5000/uniform-web:latest && docker-compose up -d uniform-web"
+  # environment:
+  #   name: dev
+  #   url: http://10.36.126.153
+  only:
+    - develop

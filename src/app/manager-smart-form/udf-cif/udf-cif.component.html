@@ -1,0 +1,728 @@
+<div class="abc">
+    <div>
+        <h2 mat-dialog-title style="background: #FFFFFF;color:#384961;border-bottom: 1px solid #828282;padding:15px">
+            THÔNG TIN UDF
+            <span class="material-icons" (click)="closeDialog(0)" style="float: right;cursor: pointer;">
+                close
+            </span>
+        </h2>
+    </div>
+    <mat-dialog-content class="mat-typography scroll-dialog">
+        <form [formGroup]="udfForm">
+            <div class="col-12" style="margin-top: 10px;">
+                <div class="col-6 colLeft">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">CAN_BO_GIOI_THIEU
+                        </label>
+                        <div class="col-sm-8 ">
+                            <input class="form-control" formControlName="CAN_BO_GIOI_THIEU" name="CAN_BO_GIOI_THIEU" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 colRight">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">THUONG TAT
+                        </label>
+                        <div class="col-sm-8">
+                            <ng-select placeholder="-- Chọn THUONG TAT --" formControlName="THUONG_TAT"
+                                name="THUONG_TAT">
+                                <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                    <div class="ng-option disabled">
+                                        Không tìm thấy dữ liệu
+                                    </div>
+                                </ng-template>
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="col-6 colLeft">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">CIF_PNKH
+                            <span style="margin-left: 5px; color: red;">(*)</span>
+                        </label>
+                        <div class="col-sm-8 ">
+                            <ng-select placeholder="-- Chọn CIF_PNKH --" formControlName="CIF_PNKH" name="CIF_PNKH">
+                                <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                    <div class="ng-option disabled">
+                                        Không tìm thấy dữ liệu
+                                    </div>
+                                </ng-template>
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 colRight">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">KHUT
+                        </label>
+                        <div class="col-sm-8">
+                            <ng-select placeholder="-- Chọn KHUT --" formControlName="KHUT" name="KHUT">
+                                <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                    <div class="ng-option disabled">
+                                        Không tìm thấy dữ liệu
+                                    </div>
+                                </ng-template>
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="col-6 colLeft">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">TEN_DOI_NGOAI
+                            
+                        </label>
+                        <div class="col-sm-8 ">
+                            <input type="text" class="form-control" formControlName="TEN_DOI_NGOAI"
+                                name="TEN_DOI_NGOAI" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 colRight">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">LV UD CN CAO CIF
+                        </label>
+                        <div class="col-sm-8">
+                            <ng-select placeholder="-- Chọn DC_GH --" formControlName="LV_UD_CN_CAO_CIF"
+                                name="LV_UD_CN_CAO_CIF">
+                                <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                    <div class="ng-option disabled">
+                                        Không tìm thấy dữ liệu
+                                    </div>
+                                </ng-template>
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="col-6 colLeft">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">WEBSITE
+                        </label>
+                        <div class="col-sm-8 ">
+                            <input type="text" class="form-control" formControlName="WEBSITE" name="WEBSITE" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 colRight">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">CN UTPT 1483 CIF
+                        </label>
+                        <div class="col-sm-8">
+                            <ng-select placeholder="-- Chọn CN UTPT 1483 CIF --" formControlName="CN_UTPT_1843"
+                                name="CN_UTPT_1843">
+                                <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                    <div class="ng-option disabled">
+                                        Không tìm thấy dữ liệu
+                                    </div>
+                                </ng-template>
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="col-6 colLeft">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">DIEN THOAI
+                        </label>
+                        <div class="col-sm-8 ">
+                            <input type="text" class="form-control" formControlName="DIEN_THOAI" name="DIEN_THOAI" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 colRight">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">DB_KH VAY
+                        </label>
+                        <div class="col-sm-8">
+                            <ng-select placeholder="-- Chọn DB_KH VAY --" formControlName="DB_KH_VAY" name="DB_KH_VAY">
+                                <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                    <div class="ng-option disabled">
+                                        Không tìm thấy dữ liệu
+                                    </div>
+                                </ng-template>
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="col-6 colLeft">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">TONG SO LD HIEN TAI
+                        </label>
+                        <div class="col-sm-8 ">
+                            <input type="text" class="form-control" formControlName="TONG_SO_LD_HIEN_TAI"
+                                name="TONG_SO_LD_HIEN_TAI" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 colRight">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">CONG TY NHA NUOC
+                        </label>
+                        <div class="col-sm-8">
+                            <ng-select placeholder="-- Chọn CONG TY NHA NUOC --" formControlName="CONG_TY_NN"
+                                name="CONG_TY_NN">
+                                <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                    <div class="ng-option disabled">
+                                        Không tìm thấy dữ liệu
+                                    </div>
+                                </ng-template>
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="col-6 colLeft">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">NGANH NGHE KINH DOANH
+                        </label>
+                        <div class="col-sm-8 ">
+                            <input type="text" class="form-control" formControlName="NGANH_NGHE_KINH_DOANH"
+                                name="NGANH_NGHE_KINH_DOANH" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 colRight">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">GROUP_CODE
+                        </label>
+                        <div class="col-sm-8">
+                            <ng-select placeholder="-- Chọn GROUP_CODE --" formControlName="GROUP_CODE"
+                                name="GROUP_CODE">
+                                <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                    <div class="ng-option disabled">
+                                        Không tìm thấy dữ liệu
+                                    </div>
+                                </ng-template>
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="col-6 colLeft">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">TEN VIET TAT
+                        </label>
+                        <div class="col-sm-8 ">
+                            <input type="text" class="form-control" formControlName="TEN_VIET_TAT"
+                                name="TEN_VIET_TAT" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 colRight">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">KENH TAO
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" formControlName="KENH_TAO" name="KENH_TAO" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="col-6 colLeft">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">HO TEN VO CHONG
+                        </label>
+                        <div class="col-sm-8 ">
+                            <input type="text" class="form-control" formControlName="HO_TEN_VO_CHONG"
+                                name="HO_TEN_VO_CHONG" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 colRight">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">CIF_DINHDANH
+                        </label>
+                        <div class="col-sm-8">
+                            <ng-select placeholder="-- Chọn CIF_DINHDANH --" formControlName="CIF_DINHDANH"
+                                name="CIF_DINHDANH">
+                                <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                    <div class="ng-option disabled">
+                                        Không tìm thấy dữ liệu
+                                    </div>
+                                </ng-template>
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="col-6 colLeft">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">SO CMND HC
+                        </label>
+                        <div class="col-sm-8 ">
+                            <input type="text" class="form-control" formControlName="SO_CMND_HC" name="SO_CMND_HC" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 colRight">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel ">DANG KY DV GD EMAIL TAI DVKD
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" formControlName="DANG_KY_DV_GD_EMAIL"
+                                name="DANG_KY_DV_GD_EMAIL" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="col-6 colLeft">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">NGAY CAP CMND HC
+                        </label>
+                        <div class="col-sm-8 ">
+                            <input type="text" class="form-control" formControlName="NGAY_CAP_CMND_HC"
+                                name="NGAY_CAP_CMND_HC" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 colRight">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">TONG DOANH THU
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" formControlName="TONG_DOANH_THU"
+                                name="TONG_DOANH_THU" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="col-6 colLeft">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">NOI CAP CMND HC
+                        </label>
+                        <div class="col-sm-8 ">
+                            <input type="text" class="form-control" formControlName="NOI_CAP_CMND_HC"
+                                name="NOI_CAP_CMND_HC" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 colRight">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">KHOI DON VI GIOI THIEU
+                        </label>
+                        <div class="col-sm-8">
+                            <ng-select placeholder="-- Chọn KHOI DON VI GIOI THIEU --" formControlName="KHOI_DON_VI_GT"
+                                name="KHOI_DON_VI_GT">
+                                <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                    <div class="ng-option disabled">
+                                        Không tìm thấy dữ liệu
+                                    </div>
+                                </ng-template>
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="col-6 colLeft">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">VON CO DINH
+                        </label>
+                        <div class="col-sm-8 ">
+                            <input type="text" class="form-control" formControlName="VON_CO_DINH" name="VON_CO_DINH" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 colRight">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">DIA BAN NONG THON
+                        </label>
+                        <div class="col-sm-8">
+                            <ng-select placeholder="-- Chọn DIA BAN NONG THON --" formControlName="DIA_BAN_NONG_THON"
+                                name="DIA_BAN_NONG_THON">
+                                <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                    <div class="ng-option disabled">
+                                        Không tìm thấy dữ liệu
+                                    </div>
+                                </ng-template>
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="col-6 colLeft">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">VON LUU DONG
+                        </label>
+                        <div class="col-sm-8 ">
+                            <input type="text" class="form-control" formControlName="VON_LUU_DONG"
+                                name="VON_LUU_DONG" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 colRight">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">MA CBNV LPB
+                        </label>
+                        <div class="col-sm-8">
+                            <ng-select placeholder="-- Chọn MA CBNV LPB --" formControlName="MA_CBNV_LPB"
+                                name="MA_CBNV_LPB">
+                                <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                    <div class="ng-option disabled">
+                                        Không tìm thấy dữ liệu
+                                    </div>
+                                </ng-template>
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="col-6 colLeft">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">NO PHAI THU
+                        </label>
+                        <div class="col-sm-8 ">
+                            <input type="text" class="form-control" formControlName="NO_PHAI_THU" name="NO_PHAI_THU" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 colRight">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">CIF GIAM DOC
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" formControlName="CIF_GIAM_DOC"
+                                name="CIF_GIAM_DOC" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="col-6 colLeft">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">NOI PHAI TRA
+                        </label>
+                        <div class="col-sm-8 ">
+                            <input type="text" class="form-control" formControlName="NO_PHAI_TRA" name="NO_PHAI_TRA" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 colRight">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">CIF KE TOAN TRUONG
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" formControlName="CIF_KE_TOAN_TRUONG"
+                                name="CIF_KE_TOAN_TRUONG" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="col-6 colLeft">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">MA HUYEN THI XA
+                        </label>
+                        <div class="col-sm-8 ">
+                            <ng-select placeholder="-- Chọn MA HUYEN THI XA --" formControlName="MA_HUYEN_THI_XA"
+                                name="MA_HUYEN_THI_XA">
+                                <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                    <div class="ng-option disabled">
+                                        Không tìm thấy dữ liệu
+                                    </div>
+                                </ng-template>
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 colRight">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">COMBO SAN PHAM 2018
+                        </label>
+                        <div class="col-sm-8">
+                            <ng-select placeholder="-- Chọn COMBO SAN PHAM 2018 --" formControlName="COMBO_SAN_PHAM_2018"
+                                name="COMBO_SAN_PHAM_2018">
+                                <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                    <div class="ng-option disabled">
+                                        Không tìm thấy dữ liệu
+                                    </div>
+                                </ng-template>
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="col-6 colLeft">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">VI TRI TO_LKET VAY VON
+                        </label>
+                        <div class="col-sm-8 ">
+                            <ng-select placeholder="-- Chọn VI TRI TO_LKET VAY VON --" formControlName="VI_TRI_TO_LKET"
+                                name="VI_TRI_TO_LKET">
+                                <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                    <div class="ng-option disabled">
+                                        Không tìm thấy dữ liệu
+                                    </div>
+                                </ng-template>
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 colRight">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">EXPIRED DATE
+                        </label>
+                        <div class="col-sm-8">
+                            <div class="input-group mb-3" style="margin-bottom: 0px !important;">
+                                <!--  <label >{{isInvalid}}</label>-->
+                                <input matInput DateOnly [matDatepicker]="dp2" formControlName="EXPIRED_DATE" name="EXPIRED_DATE"
+                                    style="height: 36px" type="text" class="form-control straight-right-border"
+                                    placeholder="dd/mm/yyyy" maxlength="10">
+                                <div class="input-group-append" style="height: 36px;">
+                                    <mat-datepicker-toggle style="height: 36px"
+                                        class="input-group-text radius-right-border" id="basic-addon2" matSuffix
+                                        [for]="dp2">
+                                    </mat-datepicker-toggle>
+                                </div>
+                                <mat-datepicker #dp2></mat-datepicker>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="col-6 colLeft">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">MA TCTD
+                        </label>
+                        <div class="col-sm-8 ">
+                            <ng-select placeholder="-- Chọn MA TCTD --" formControlName="MA_TCTD" name="MA_TCTD">
+                                <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                    <div class="ng-option disabled">
+                                        Không tìm thấy dữ liệu
+                                    </div>
+                                </ng-template>
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 colRight">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">PNKH_KHDK
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" formControlName="PNKH_KHDK" name="PNKH_KHDK" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="col-6 colLeft">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">TC_K_TCTD
+                        </label>
+                        <div class="col-sm-8 ">
+                            <ng-select placeholder="-- Chọn TC_K_TCTD --" formControlName="TC_K_TCTD"
+                                name="TC_K_TCTD">
+                                <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                    <div class="ng-option disabled">
+                                        Không tìm thấy dữ liệu
+                                    </div>
+                                </ng-template>
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 colRight">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel">TRA CUU TT STK WEBSITE VI VIET
+                            <span style="margin-left: 5px; color: red;">(*)</span>
+                        </label>
+                        <div class="col-sm-8">
+                            <ng-select placeholder="-- Chọn TRA CUU TT STK WEBSITE VI VIET --" formControlName="TRA_CUU_TT_STK"
+                                name="TRA_CUU_TT_STK">
+                                <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                    <div class="ng-option disabled">
+                                        Không tìm thấy dữ liệu
+                                    </div>
+                                </ng-template>
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="col-6 colLeft">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">TONG NGUON VON
+                        </label>
+                        <div class="col-sm-8 ">
+                            <input type="text" class="form-control" formControlName="TONG_NGUON_VON"
+                                name="TONG_NGUON_VON" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 colRight">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel">SDT NHAN SMS GD TIET KIEM
+                            <span style="margin-left: 5px; color: red;">(*)</span>
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" formControlName="SDT_NHAN_SMS"
+                                name="SDT_NHAN_SMS" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="col-6 colLeft">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">KY DANH GIA TNV
+                        </label>
+                        <div class="col-sm-8 ">
+                            <input type="text" class="form-control" formControlName="KY_DANH_GIA_TNV"
+                                name="KY_DANH_GIA_TNV" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 colRight">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">SO BAO HIEM XA HOI
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" formControlName="SO_BAO_HIEM_XA_HOI"
+                                name="SO_BAO_HIEM_XA_HOI" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="col-6 colLeft">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">KHACH HANG
+                        </label>
+                        <div class="col-sm-8 ">
+                            <ng-select placeholder="-- Chọn KHACH HANG --" formControlName="KHACH_HANG"
+                                name="KHACH_HANG">
+                                <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                    <div class="ng-option disabled">
+                                        Không tìm thấy dữ liệu
+                                    </div>
+                                </ng-template>
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 colRight">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel">NGUOI DAI DIEN PHAP LUAT
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" formControlName="NGUOI_DAI_DIEN_PHAP_LUAT"
+                                name="NGUOI_DAI_DIEN_PHAP_LUAT" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="col-6 colLeft">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">LOAI CHUONG TRINH
+                        </label>
+                        <div class="col-sm-8 ">
+                            <ng-select placeholder="-- Chọn LOAI CHUONG TRINH --" formControlName="LOAI_CHUONG_TRINH"
+                                name="LOAI_CHUONG_TRINH">
+                                <ng-template ng-notfound-tmp let-searchTerm="searchTerm">
+                                    <div class="ng-option disabled">
+                                        Không tìm thấy dữ liệu
+                                    </div>
+                                </ng-template>
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 colRight">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">CMND CCCD HC
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" formControlName="CMND_CCCD_HC"
+                                name="CMND_CCCD_HC" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="col-6 colLeft">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">TU NGAY
+                        </label>
+                        <div class="col-sm-8 ">
+                            <div class="input-group mb-3" style="margin-bottom: 0px !important;">
+                                <!--  <label >{{isInvalid}}</label>-->
+                                <input matInput DateOnly [matDatepicker]="dp" formControlName="TU_NGAY" name="TU_NGAY"
+                                    style="height: 36px" type="text" class="form-control straight-right-border"
+                                    placeholder="dd/mm/yyyy" maxlength="10">
+                                <div class="input-group-append" style="height: 36px; margin-top: -1px">
+                                    <mat-datepicker-toggle style="height: 36px"
+                                        class="input-group-text radius-right-border" id="basic-addon2" matSuffix
+                                        [for]="dp">
+                                    </mat-datepicker-toggle>
+                                </div>
+                                <mat-datepicker #dp></mat-datepicker>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 colRight">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">NHAN HDDT QUA EMAIL
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" formControlName="NHA_HDDT_QUA_EMAIL"
+                                name="NHA_HDDT_QUA_EMAIL" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="col-6 colLeft">
+                    <div class="col-12 pd0">
+                        <label class="col-sm-4 col-form-label textLabel padTop">DEN NGAY
+                        </label>
+                        <div class="col-sm-8 ">
+                            <div class="input-group mb-3" style="margin-bottom: 0px !important;">
+                                <!--  <label >{{isInvalid}}</label>-->
+                                <input matInput DateOnly [matDatepicker]="dp1" formControlName="DEN_NGAY"
+                                    name="DEN_NGAY" style="height: 36px" type="text"
+                                    class="form-control straight-right-border" placeholder="dd/mm/yyyy" maxlength="10">
+                                <div class="input-group-append" style="height: 36px; margin-top: -1px">
+                                    <mat-datepicker-toggle style="height: 36px"
+                                        class="input-group-text radius-right-border" id="basic-addon2" matSuffix
+                                        [for]="dp1">
+                                    </mat-datepicker-toggle>
+                                </div>
+                                <mat-datepicker #dp1></mat-datepicker>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <div class="float-right" style="height: 57px;
+        margin-top: 9px;">
+            <button type="button" class="btn newfile btn-color" cdkFocusInitial>Lưu</button>
+            <button type="button" class="btn closePopup" (click)="closeDialog(0)">Đóng</button>
+        </div>
+    </mat-dialog-actions>
+</div>

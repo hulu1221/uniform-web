@@ -1,0 +1,136 @@
+<!-- <app-progress-spinner [color]="color" [mode]="mode" [value]="value" *ngIf="displayProgressSpinnerInBlock"
+        class="sq-global-backdrop center-aligned">
+</app-progress-spinner> -->
+<div class="container-fuild" style="margin-top: 5px;">
+    <div>
+        <div class="row cust-row" style="margin-left: 5px;
+        margin-right: 3px;">
+            <div class="col-12" style="border-bottom: 1px solid #c8ced3;padding: 0px;">
+                <div class="p-2" style="font-weight: 500;">
+                    <span>THÔNG TIN KHÁCH HÀNG</span>
+                </div>
+            </div>
+            <div class="col-12" style="margin-top: 10px; margin-bottom: 5px;">
+                <div class="col-6 colLeft">
+                    <div class="row">
+                        <label class="col-sm-5 col-form-label textLabel">Mã khách hàng
+                        </label>
+                        <div class="col-sm-7 txt">
+                            <label>{{detailProcess.customerCode}}</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-5 col-form-label textLabel">Ngày sinh
+                        </label>
+                        <div class="col-sm-7 txt">
+                            <label>{{detailProcess.birthDate| date :'dd/MM/yyyy'}}</label>
+                        </div>
+                    </div>
+                    <!-- <div class="row">
+                        <label class="col-sm-5 col-form-label textLabel">Địa chỉ email
+                        </label>
+                        <div class="col-sm-7 txt">
+                            <label>{{detailProcess.email}}</label>
+                        </div>
+                    </div> -->
+                    <div class="row">
+                        <label class="col-sm-5 col-form-label textLabel">Số giấy tờ xác minh
+                        </label>
+                        <div class="col-sm-7 txt">
+                            <label>{{detailProcess.perDocNo}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 colRight">
+                    <div class="row">
+                        <label class="col-sm-5 col-form-label textLabel">Họ và tên
+                        </label>
+                        <div class="col-sm-7 txt">
+                            <label>{{detailProcess.fullName}}</label>
+                        </div>
+                    </div>
+                    <!-- <div class="row">
+                        <label class="col-sm-5 col-form-label textLabel">Giới tính
+                        </label>
+                        <div class="col-sm-7 txt">
+                            <label>{{detailProcess.genderName}}</label>
+                        </div>
+                    </div> -->
+                    <!-- <div class="row">
+                        <label class="col-sm-5 col-form-label textLabel">Điện thoại di động
+                        </label>
+                        <div class="col-sm-7 txt">
+                            <label>{{detailProcess.mobilePhone}}</label>
+                        </div>
+                    </div> -->
+                    <div class="row">
+                        <label class="col-sm-5 col-form-label textLabel">Trạng thái
+                        </label>
+                        <div class="col-sm-7 txt">
+                            <label>{{detailProcess.statusName}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row cust-row" style="margin-left: 5px;
+          margin-right: 3px;margin-top: 5px;">
+            <div class="col-12" style="border-bottom: 1px solid #c8ced3;padding: 0px;">
+                <div class="col-6" style="float: left;padding: 0px;">
+                    <div class="p-2" style="font-weight: 500;">
+                        <span>DANH SÁCH ĐƯỢC ỦY QUYỀN</span>
+                    </div>
+                </div>
+            </div>
+            <div class=" table-lst mat-elevation-z8 ">
+                <table class="table table-responsive table-fixed" style="margin: 0px;display: unset;">
+                    <thead>
+                        <tr class="titleTD">
+                            <td>Họ và tên</td>
+                            <td>Số GTXM</td>
+                            <td>Từ ngày</td>
+                            <td>Đến ngày</td>
+                            <td>Trạng thái</td>
+                            <td>Hành động</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                         <tr *ngFor="let item of lstAccount" class="hoverTr" >
+                            <td style="color: #0088FF;" (click)="detailAccount(item)">{{item.fullName}}</td>
+                            <td style="text-align: right;">{{item.perDocNo}}</td>
+                            <td style="text-align: center;">{{item.validFrom}}</td>
+                            <td style="text-align: center;">{{item.validTo}}</td>
+                            <td style="text-align: center;">{{item.currentStatusName}}</td>
+                            <td style="text-align: center;font-size: 18px;">
+                                <i class="fa fa-trash-o "aria-hidden="true" (click)="showDialog(item.id)"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td *ngIf="lstAccount == null" style="text-align: center;">Không có dữ liệu</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<app-dialog #appDialog></app-dialog>
+<div style="height: 50px;display: block;clear: both;"></div>
+<div class="row footer-row" style="margin:0px;position: fixed;width: 100%;bottom: 0px;background: #23388F;">
+    <div class="col-12" style="text-align: right;padding: 0px;cursor: pointer;margin: 0px;">
+        <div class="footer" (click)="createAuthority()" *ngIf="checkButtonCreate" style="cursor: pointer;"
+            style="padding-right: 20px;">
+            <span class="material-icons" style="cursor: pointer;">
+                add
+            </span>
+            <label style="padding: 3px 5px 5px 5px !important;cursor: pointer;">Thêm mới ủy quyền</label>
+        </div>
+        <div class="footer" (click)="backPage()" style="cursor: pointer;">
+            <span class="material-icons" style="cursor: pointer;">
+                keyboard_backspace
+            </span>
+            <label style="padding: 3px 5px 5px 5px !important;cursor: pointer;">Trở về trang trước</label>
+        </div>
+    </div>
+</div>

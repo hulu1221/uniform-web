@@ -1,0 +1,517 @@
+<!-- danh sach account -->
+<div class="container-fuild" style="margin-top: 5px;">
+    <div>
+        <div class="row cust-row" style="margin-left: 5px;
+        margin-right: 3px;">
+            <div class="col-12" style="border-bottom: 1px solid #c8ced3;padding: 0px;">
+                <div class="p-2" style="font-weight: 500;">
+                    <span>THÔNG TIN KHÁCH HÀNG</span>
+                </div>
+            </div>
+            <div class="col-12" style="margin-top: 10px; margin-bottom: 5px;">
+                <div class="col-6 colLeft">
+                    <div class="row">
+                        <label class="col-sm-5 col-form-label textLabel">Mã khách hàng
+                        </label>
+                        <div class="col-sm-7 txt">
+                            <label>{{detailProcess.customerCode}}</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-5 col-form-label textLabel">Ngày sinh
+                        </label>
+                        <div class="col-sm-7 txt">
+                            <label>{{detailProcess.birthDate | date :'dd/MM/yyyy'}}</label>
+                        </div>
+                    </div>
+                    <!-- <div class="row">
+                        <label class="col-sm-5 col-form-label textLabel">Địa chỉ email
+                        </label>
+                        <div class="col-sm-7 txt">
+                            <label>{{detailProcess.email}}</label>
+                        </div>
+                    </div> -->
+                    <div class="row">
+                        <label class="col-sm-5 col-form-label textLabel">Số giấy tờ xác minh
+                        </label>
+                        <div class="col-sm-7 txt">
+                            <label>{{detailProcess.perDocNo}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 colRight">
+                    <div class="row">
+                        <label class="col-sm-5 col-form-label textLabel">Họ và tên
+                        </label>
+                        <div class="col-sm-7 txt">
+                            <label>{{detailProcess.fullName}}</label>
+                        </div>
+                    </div>
+                    <!-- <div class="row">
+                        <label class="col-sm-5 col-form-label textLabel">Giới tính
+                        </label>
+                        <div class="col-sm-7 txt">
+                            <label>{{detailProcess.genderName}}</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-5 col-form-label textLabel">Điện thoại di động
+                        </label>
+                        <div class="col-sm-7 txt">
+                            <label>{{detailProcess.mobilePhone}}</label>
+                        </div>
+                    </div> -->
+                    <div class="row">
+                        <label class="col-sm-5 col-form-label textLabel">Trạng thái
+                        </label>
+                        <div class="col-sm-7 txt">
+                            <label>{{detailProcess.maritalStatusName}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- them moi -->
+    <form>
+        <div>
+            <div class="row cust-row" style="margin-left: 5px;
+        margin-right: 3px;margin-top: 5px;">
+                <div class="col-12" style="border-bottom: 1px solid #c8ced3;padding: 0px;">
+                    <div class="p-2" style="font-weight: 500;">
+                        <span>THÔNG TIN TÀI KHOẢN</span>
+                    </div>
+                </div>
+                <div class="col-12" style="display: flex;padding-left: 0px;padding-right: 0px;padding-top: 10px;">
+                    <div class="col-6 colLeft">
+                        <div class="form-group row">
+                            <label class="col-sm-5 col-form-label textLabel">Tên tài khoản
+                            </label>
+                            <div class="col-sm-7 txt">
+                                <label>{{objAccount.accountName}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-5 col-form-label textLabel">Số tài khoản
+                            </label>
+                            <div class="col-sm-7 txt">
+                                <label>{{accountNumber}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 colRight">
+                        <div class="form-group row">
+                            <label class="col-sm-5 col-form-label textLabel">Loại tiền tệ<span
+                                    style="color: red;margin-left: 5px;">(*)</span>
+                            </label>
+                            <div class="col-sm-7 txt">
+                                <label>{{objAccount.currencyCode}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-5 col-form-label textLabel">Trạng thái
+                            </label>
+                            <div class="col-sm-7 txt">
+                                <label>{{objAccount.currentStatusName}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12" style="border-bottom: 1px solid #c8ced3;padding: 0px;">
+                    <div class="p-2" style="font-weight: 500;">
+                        <span>THÔNG TIN ỦY QUYỀN</span>
+                    </div>
+                </div>
+                <div class="col-12" style="display: flex;padding-left: 0px;padding-right: 0px;padding-top: 10px;">
+                    <div class="col-6 colLeft">
+                        <div class="form-group row">
+                            <label class="col-sm-5 col-form-label textLabel">Họ và tên
+                                <span style="color: red;margin-left: 5px;">(*)</span>
+                            </label>
+                            <div class="col-sm-7 txt">
+                                <label>{{objAuthority.fullName}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-5 col-form-label textLabel">Loại GTXM<span
+                                    style="color: red;margin-left: 5px;">(*)</span>
+                            </label>
+                            <div class="col-sm-7 txt">
+                                <label>{{objAuthority.perDocTypeName}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-5 col-form-label textLabel">Số GTXM<span
+                                    style="color: red;margin-left: 5px;">(*)</span>
+                            </label>
+                            <div class="col-sm-7 txt">
+                                <label>{{objAuthority.perDocNo}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-5 col-form-label textLabel">Ngày cấp<span
+                                    style="color: red;margin-left: 5px;">(*)</span>
+                            </label>
+                            <div class="col-sm-7 txt">
+                                <label>{{issueDate}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-5 col-form-label textLabel">Nơi cấp<span
+                                    style="color: red;margin-left: 5px;">(*)</span>
+                            </label>
+                            <div class="col-sm-7 txt">
+                                <label>{{objAuthority.issuePlace}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-5 col-form-label textLabel">Người cư trú<span
+                                    style="color: red;margin-left: 5px;">(*)</span>
+                            </label>
+                            <div class="col-sm-7" style="padding-top: 8px;">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions1"
+                                        id="inlineRadio1" [value]="true" [(ngModel)]="radioCheck" disabled="disabled">
+                                    <label style="padding-top: 3px;" for="inlineRadio1">Có</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" disabled="disabled"
+                                        name="inlineRadioOptions1" id="inlineRadio2" [value]="false"
+                                        [(ngModel)]="radioCheck">
+                                    <label style="padding-top: 3px;" for="inlineRadio2">Không</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-5 col-form-label textLabel">Chức vụ<span
+                                    style="color: red;margin-left: 5px;">(*)</span>
+                            </label>
+                            <div class="col-sm-7 txt">
+                                <label>{{objAuthority.position}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 colRight">
+                        <div class="form-group row">
+                            <label class="col-sm-5 col-form-label textLabel">Giới tính<span
+                                    style="color: red;margin-left: 5px;">(*)</span>
+                            </label>
+                            <div class="col-sm-7 txt">
+                                <label>{{objAuthority.genderName}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-5 col-form-label textLabel">Ngày sinh<span
+                                    style="color: red;margin-left: 5px;">(*)</span>
+                            </label>
+                            <div class="col-sm-7 txt">
+                                <label>{{birthDate}}</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-5 col-form-label textLabel">Quốc tịch<span
+                                    style="color: red;margin-left: 5px;">(*)</span>
+                            </label>
+                            <div class="col-sm-7 txt" style="display: flex;">
+                                <label>{{objAuthority.nationality1Name}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group row" *ngIf="objAuthority.nationality2Name !== null">
+                            <label class="col-sm-5 col-form-label textLabel"><span
+                                    style="color: red;margin-left: 5px;"></span>
+                            </label>
+                            <div class="col-sm-7 txt" style="display: flex;">
+                                <label>{{objAuthority.nationality2Name}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group row" *ngIf="objAuthority.nationality3Name !== null">
+                            <label class="col-sm-5 col-form-label textLabel"><span
+                                    style="color: red;margin-left: 5px;"></span>
+                            </label>
+                            <div class="col-sm-7 txt" style="display: flex;">
+                                <label>{{objAuthority.nationality3Name}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group row" *ngIf="objAuthority.nationality4Name !== null">
+                            <label class="col-sm-5 col-form-label textLabel"><span
+                                    style="color: red;margin-left: 5px;"></span>
+                            </label>
+                            <div class="col-sm-7 txt" style="display: flex;">
+                                <label>{{objAuthority.nationality4Name}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-5 col-form-label textLabel">Điện thoại di động<span
+                                    style="color: red;margin-left: 5px;">(*)</span>
+                            </label>
+                            <div class="col-sm-7 txt">
+                                <label>{{objAuthority.mobilePhone}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-5 col-form-label textLabel">Địa chỉ email
+                            </label>
+                            <div class="col-sm-7 txt">
+                                <label>{{objAuthority.email}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-5 col-form-label textLabel">Nghề nghiệp<span
+                                    style="color: red;margin-left: 5px;">(*)</span>
+                            </label>
+                            <div class="col-sm-7 txt">
+                                <label>{{objAuthority.industry}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="p-2" style="font-weight: 500;">
+                        <span style="font-weight: bold;">Địa chỉ hiện tại <span style="color: red;">(*)</span></span>
+                    </div>
+                </div>
+                <div class="col-12" style="display: flex;padding-left: 0px;padding-right: 0px;padding-top: 10px;">
+                    <div class="col-6 colLeft">
+                        <div class="form-group row">
+                            <label class="col-sm-5 col-form-label textLabel">Quốc gia
+                                <span style="color: red;margin-left: 5px;">(*)</span>
+                            </label>
+                            <div class="col-sm-7 txt">
+                                <label>{{objAuthority.currentCountryName}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-5 col-form-label textLabel">Quận/huyện<span
+                                    style="color: red;margin-left: 5px;">(*)</span>
+                            </label>
+                            <div class="col-sm-7 txt">
+                                <label>{{objAuthority.currentDistrictName}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-5 col-form-label textLabel">Số nhà/đường phố<span
+                                    style="color: red;margin-left: 5px;">(*)</span>
+                            </label>
+                            <div class="col-sm-7 txt ">
+                                <label>{{objAuthority.currentStreetNumber}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 colRight">
+                        <div class="form-group row">
+                            <label class="col-sm-5 col-form-label textLabel">Tỉnh/thành phố<span
+                                    style="color: red;margin-left: 5px;">(*)</span>
+                            </label>
+                            <div class="col-sm-7 txt">
+                                <label>{{objAuthority.currentCityName}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-5 col-form-label textLabel">Phường xã<span
+                                    style="color: red;margin-left: 5px;">(*)</span>
+                            </label>
+                            <div class="col-sm-7 txt">
+                                <label>{{objAuthority.currentWardName}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="p-2" style="font-weight: 500;">
+                        <div class="form-group row">
+                            <span class="col-sm-2" style="font-weight: bold;">Địa chỉ thường trú <span
+                                    style="color: red;">(*)</span></span>
+                            <div class="col-sm-10">
+                                <div class="form-check form-check-inline">
+                                    <input disabled class="form-check-input" type="checkbox" [(ngModel)]="checkBoxTrue"
+                                        [ngModelOptions]="{standalone: true}">
+                                    <label class="form-check-label" for="inlineCheckbox1" style="font-style: italic;
+                                font-size: 14px;
+                                color: blue;">Trùng với địa chỉ hiện tại</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12" style="display: flex;padding-left: 0px;padding-right: 0px;padding-top: 10px;">
+                    <div class="col-6 colLeft">
+                        <div class="form-group row">
+                            <label class="col-sm-5 col-form-label textLabel">Quốc gia
+                                <span style="color: red;margin-left: 5px;">(*)</span>
+                            </label>
+                            <div class="col-sm-7 txt">
+                                <label>{{objAuthority.residenceCountryName}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-5 col-form-label textLabel">Quận/huyện<span
+                                    style="color: red;margin-left: 5px;">(*)</span>
+                            </label>
+                            <div class="col-sm-7 txt">
+                                <label>{{objAuthority.residenceDistrictName}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-5 col-form-label textLabel">Số nhà/đường phố<span
+                                    style="color: red;margin-left: 5px;">(*)</span>
+                            </label>
+                            <div class="col-sm-7 txt ">
+                                <label>{{objAuthority.residenceStreetNumber}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 colRight">
+                        <div class="form-group row">
+                            <label class="col-sm-5 col-form-label textLabel">Tỉnh/thành phố<span
+                                    style="color: red;margin-left: 5px;">(*)</span>
+                            </label>
+                            <div class="col-sm-7 txt">
+                                <label>{{objAuthority.residenceCityName}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-5 col-form-label textLabel">Phường xã<span
+                                    style="color: red;margin-left: 5px;">(*)</span>
+                            </label>
+                            <div class="col-sm-7 txt">
+                                <label>{{objAuthority.residenceWardName}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ket thuc them moi -->
+        <div class="row cust-row" style="margin-left: 5px;
+        margin-right: 3px;margin-top: 5px;">
+            <div class="col-12" style="border-bottom: 1px solid #c8ced3;padding: 0px;">
+                <div class="p-2" style="font-weight: 500;">
+                    <span>NỘI DUNG ỦY QUYỀN</span>
+                </div>
+            </div>
+            <div class="col-12" style="display: flex;padding-left: 0px;padding-right: 0px;padding-top: 10px;">
+                <div class="col-6 colLeft">
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label textLabel">Loại tài khoản
+                            <span style="color: red;margin-left: 5px;">(*)</span>
+                        </label>
+                        <div class="col-sm-7 txt">
+                            <label>{{objAccount.accountProductName}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 colRight">
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label textLabel">Số tài khoản
+                            <span style="color: red;margin-left: 5px;">(*)</span>
+                        </label>
+                        <div class="col-sm-7 txt">
+                            <label>{{accountNumber}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12" style="display: flex;padding-left: 0px;padding-right: 0px;">
+                <div class="col-6 colLeft">
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label textLabel" style="padding-top: 0px;">Phạm vi ủy quyền<span
+                                style="color: red;margin-left: 5px;">(*)</span>
+                        </label>
+                        <div class="col-sm-8">
+                            <div class="form-check" style="padding-bottom: 10px;"
+                                *ngFor="let item of lstAuthorType;let i = index">
+                                <input disabled="disabled" [value]="lstAuthorType[i].checked"
+                                    [ngModelOptions]="{standalone: true}" [(ngModel)]="lstAuthorType[i].checked"
+                                    class="form-check-input" type="checkbox">
+                                <label style="padding-top: 2px;">
+                                    {{item.name}}
+                                </label>
+                            </div>
+                            <div class="form-check" style="padding-bottom: 10px;padding-left: 0px;"
+                                *ngIf="booleanOrther">
+                                <textarea [ngModelOptions]="{standalone: true}" class="form-control" name="valueOrther"
+                                    disabled="disabled" [(ngModel)]="valueOrther"></textarea>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 colRight" [hidden]="!isChecked">
+                    <div class="form-group" style="display: flex;">
+                        <label class="col-4 col-form-label textLabel" style="float: left;">
+                            Giá trị hạn mức
+                            <span style="color: red;margin-left: 5px;">(*)</span>
+                        </label>
+                        <label class="col-8 col-form-label " style="float: left;">{{limitValue}}</label>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-12" style="display: flex;padding-left: 0px;padding-right: 0px;">
+                <div class="col-12 colLeft">
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label textLabel">Thời gian ủy quyền<span
+                                style="color: red;margin-left: 5px;">(*)</span>
+                        </label>
+                        <div class="col-sm-10 txt">
+                            <div class="form-check" *ngFor="let item of lstAuthorExpire;let i = index">
+                                <input class="form-check-input" [value]="lstAuthorExpire[i].checked"
+                                    [ngModelOptions]="{standalone: true}" [(ngModel)]="lstAuthorExpire[i].checked"
+                                    type="radio" name="inlineRadioOptions" disabled="disabled">
+                                <label style="padding-top: 2px;">
+                                    {{item.name}}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="col-6 colLeft">
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label textLabel">Từ ngày
+                        </label>
+                        <div class="col-sm-7 txt">
+                            <label>{{objAuthority.validFrom}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 colRight" [hidden]="objAuthority.expireAuthorCode == 'ONE' ">
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label textLabel">Đến ngày
+                        </label>
+                        <div class="col-sm-7 txt">
+                            <label>{{objAuthority.validTo}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div style="height: 50px;display: block;clear: both;"></div>
+<div class="row footer-row" style="margin:0px;position: fixed;width: 100%;bottom: 0px;background: #23388F;">
+    <div class="col-12" style="text-align: right;padding: 0px;cursor: pointer;margin: 0px;">
+        <div class="footer" style="cursor: pointer;" style="padding-right: 20px;" (click)="updateAuthority()">
+            <span class="material-icons" style="cursor: pointer;">
+                edit
+            </span>
+            <label style="padding: 3px 5px 5px 5px !important;cursor: pointer;">Cập nhật ủy quyền</label>
+        </div>
+        <div class="footer" style="cursor: pointer;" (click)="showDialog()">
+            <span class="material-icons" style="cursor: pointer;">
+                clear
+            </span>
+            <label style="padding: 3px 5px 5px 5px !important;cursor: pointer;">Xóa thông tin</label>
+        </div>
+        <div class="footer" (click)="backPage()" style="cursor: pointer;">
+            <span class="material-icons" style="cursor: pointer;">
+                keyboard_backspace
+            </span>
+            <label style="padding: 3px 5px 5px 5px !important;cursor: pointer;">Trở về trang trước</label>
+        </div>
+    </div>
+</div>
+<app-dialog #appDialog></app-dialog>

@@ -1,0 +1,36 @@
+.table tr th{
+    background: #EFF4FF;
+    border: 1px solid #DFD9D9;
+    text-align: center;
+    font-weight: 500;
+    font-size: 16px;
+    font-style: normal;
+    text-indent: 8px;
+}
+.table tr th.action {
+  width: 110px;
+}
+
+.table tr td{
+  border: 1px solid #DFD9D9;
+  padding: 7px;
+  vertical-align: middle;
+}
+.titleSearch{
+    padding-top: 15px;
+    border-bottom: 1px solid #BDBDBD;
+    padding-bottom: 15px;
+    font-weight: 500;
+    font-size: 18px;
+}
+.form-group{
+    margin-bottom: 5px;
+}
+i{
+  font-size: 24px;
+  cursor: pointer;
+}
+.form-group.required .control-label:after {
+  content:"(*)";
+  color:red;
+}

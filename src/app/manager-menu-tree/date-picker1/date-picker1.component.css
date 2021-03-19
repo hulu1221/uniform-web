@@ -1,0 +1,28 @@
+/*::ng-deep .mat-icon-button {*/
+/*  height: 0;*/
+/*  flex-shrink: 0;*/
+/*  line-height: 0;*/
+/*}*/
+::ng-deep .mat-datepicker-toggle {
+  /*margin-right: 10px !important;*/
+  padding: 3px;
+  width: auto;
+  height: 37px;
+}
+::ng-deep .mat-icon-button:focus {
+  outline: none;
+}
+::ng-deep .cdk-overlay-connected-position-bounding-box {
+  position: relative !important;
+}
+::ng-deep .straight-right-border {
+  border-top-right-radius: 0px!important;
+  border-bottom-right-radius: 0px!important;
+}
+::ng-deep .radius-right-border {
+  border-top-right-radius: 4px!important;
+  border-bottom-right-radius: 4px!important;
+}
+::placeholder {
+  color: #999;
+}
